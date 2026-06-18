@@ -394,7 +394,7 @@ const translations = {
 };
 
 let language = "es";
-let activeTool = "compound";
+let activeTool = document.body.dataset.tool || "compound";
 let money = createMoneyFormatter(language, 0);
 let decimalMoney = createMoneyFormatter(language, 2);
 let percent = createPercentFormatter(language);
