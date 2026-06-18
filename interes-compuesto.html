@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-58JX4QPVL0"></script>
@@ -13,13 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0c1210">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Calculadora de interÃ©s compuesto con aportes mensuales, modo oscuro, varios idiomas y diseÃ±o adaptable para Android.">
+  <meta name="description" content="Calculadora de interés compuesto con aportes mensuales, modo oscuro, varios idiomas y diseño adaptable para Android.">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Calculadora de interÃ©s compuesto">
+  <meta property="og:title" content="Calculadora de interés compuesto">
   <meta property="og:description" content="Calcula el valor futuro de tu dinero con capital inicial, aportes mensuales y tasa anual.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
-  <title>Calculadora de interÃ©s compuesto</title>
+  <title>Calculadora de interés compuesto</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
 </head>
 <body class="dark" data-tool="compound">
   <main class="shell">
-    <section class="workspace" aria-label="Calculadora de interÃ©s compuesto">
+    <section class="workspace" aria-label="Calculadora de interés compuesto">
       <aside class="side-panel">
         <div class="brand-block">
           <span class="brand-mark" aria-hidden="true">F</span>
@@ -40,36 +40,37 @@
         <details class="tools-menu">
           <summary>Calculadoras</summary>
           <nav class="tool-list" aria-label="Seleccionar calculadora">
-            <a class="tool-tab active" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>InterÃ©s compuesto</strong><small>Crecimiento por aportes</small></span></a>
-            <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>PrÃ©stamos</strong><small>Cuota y costo total</small></span></a>
+            <a class="tool-tab active" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
+            <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
             <a class="tool-tab" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
-            <a class="tool-tab" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">â†—</span><span><strong>InversiÃ³n</strong><small>Meta y rendimiento real</small></span></a>
+            <a class="tool-tab" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">?</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
             <a class="tool-tab" data-tool="savings" href="ahorro.html"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
           </nav>
         </details>
         <div class="side-actions">
-          <label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">EspaÃ±ol</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">FranÃ§ais</option><option value="pt">PortuguÃªs</option><option value="de">Deutsch</option></select></label>
+          <label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option></select></label>
           <a class="theme-toggle" href="blog/" aria-label="Abrir blog financiero"><span class="theme-dot" aria-hidden="true"></span><span>Blog</span></a>
           <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button>
         </div>
       </aside>
       <section class="calculator-panel">
-        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Crecimiento futuro</p><h2 id="tool-title">InterÃ©s compuesto</h2></div><div class="summary-chip"><span id="primary-label">Valor futuro</span><strong id="primary-result">$0</strong></div></header>
+        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Crecimiento futuro</p><h2 id="tool-title">Interés compuesto</h2></div><div class="summary-chip"><span id="primary-label">Valor futuro</span><strong id="primary-result">$0</strong></div></header>
         <section class="content-grid">
           <form class="form-card active" id="compound-form" data-form="compound">
             <label>Capital inicial<input type="number" inputmode="decimal" name="principal" value="10000" min="0" step="100"></label>
             <label>Aporte mensual<input type="number" inputmode="decimal" name="monthly" value="250" min="0" step="25"></label>
             <label>Tasa anual (%)<input type="number" inputmode="decimal" name="rate" value="8" min="0" step="0.1"></label>
-            <label>Tiempo (aÃ±os)<input type="number" inputmode="numeric" name="years" value="15" min="1" step="1"></label>
-            <label>CapitalizaciÃ³n<select name="frequency"><option value="12">Mensual</option><option value="4">Trimestral</option><option value="1">Anual</option><option value="365">Diaria</option></select></label>
+            <label>Tiempo (años)<input type="number" inputmode="numeric" name="years" value="15" min="1" step="1"></label>
+            <label>Capitalización<select name="frequency"><option value="12">Mensual</option><option value="4">Trimestral</option><option value="1">Anual</option><option value="365">Diaria</option></select></label>
           </form>
           <section class="result-card" aria-live="polite"><div class="meter-wrap"><div class="meter" aria-label="Indicador circular de resultado"><div class="meter-core"><span id="meter-label">Progreso</span><strong id="meter-value">0%</strong></div></div></div><div class="result-list" id="result-list"></div></section>
         </section>
-        <section class="seo-accordion" id="seo-accordion" aria-label="InformaciÃ³n de la calculadora"></section>
+        <section class="seo-accordion" id="seo-accordion" aria-label="Información de la calculadora"></section>
       </section>
     </section>
   </main>
   <script src="app.js"></script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4a8f0c3bfe5d441fbad785ef0b4259e3"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
 
