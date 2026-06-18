@@ -23,8 +23,8 @@ const translations = {
     locale: "es-US",
     htmlLang: "es",
     ogLocale: "es_ES",
-    title: "Calculadora de interÃ©s compuesto, prÃ©stamos, hipotecas e inversiÃ³n",
-    metaDescription: "Calculadoras financieras modernas: interÃ©s compuesto, prÃ©stamos, hipotecas e inversiÃ³n con resultados instantÃ¡neos, modo oscuro y diseÃ±o adaptable para Android.",
+    title: "Calculadora de interés compuesto, préstamos, hipotecas e inversión",
+    metaDescription: "Calculadoras financieras modernas: interés compuesto, préstamos, hipotecas e inversión con resultados instantáneos, modo oscuro y diseño adaptable para Android.",
     appName: "Calculadoras financieras",
     eyebrow: "Suite privada",
     language: "Idioma",
@@ -33,28 +33,28 @@ const translations = {
     ariaDark: "Cambiar a modo oscuro",
     ariaLight: "Cambiar a modo claro",
     tools: {
-      compound: ["InterÃ©s compuesto", "Crecimiento por aportes", "Crecimiento futuro", "Valor futuro"],
-      loan: ["PrÃ©stamos", "Cuota y costo total", "Cuota mensual", "Pago estimado"],
+      compound: ["Interés compuesto", "Crecimiento por aportes", "Crecimiento futuro", "Valor futuro"],
+      loan: ["Préstamos", "Cuota y costo total", "Cuota mensual", "Pago estimado"],
       mortgage: ["Hipotecas", "Pago, seguros e impuestos", "Pago completo", "Pago mensual"],
-      investment: ["InversiÃ³n", "Meta y rendimiento real", "Meta financiera", "Valor proyectado"]
+      investment: ["Inversión", "Meta y rendimiento real", "Meta financiera", "Valor proyectado"]
     },
     fields: {
       principal: "Capital inicial",
       monthly: "Aporte mensual",
       rate: "Tasa anual (%)",
-      years: "Tiempo (aÃ±os)",
-      frequency: "CapitalizaciÃ³n",
-      amount: "Monto del prÃ©stamo",
+      years: "Tiempo (años)",
+      frequency: "Capitalización",
+      amount: "Monto del préstamo",
       months: "Plazo (meses)",
       fee: "Cargo inicial",
       price: "Precio de la vivienda",
       down: "Inicial / enganche",
       taxes: "Impuestos anuales",
       insurance: "Seguro anual",
-      investmentPrincipal: "InversiÃ³n inicial",
+      investmentPrincipal: "Inversión inicial",
       returnRate: "Rendimiento anual (%)",
-      inflation: "InflaciÃ³n anual (%)",
-      horizon: "Horizonte (aÃ±os)",
+      inflation: "Inflación anual (%)",
+      horizon: "Horizonte (años)",
       goal: "Meta"
     },
     options: ["Mensual", "Trimestral", "Anual", "Diaria"],
@@ -70,7 +70,7 @@ const translations = {
       fee: "Cargo inicial",
       term: "Plazo",
       down: "Inicial",
-      principalInterest: "Capital e interÃ©s",
+      principalInterest: "Capital e interés",
       escrow: "Impuestos + seguro",
       financed: "Monto financiado",
       downUsed: "Inicial usada",
@@ -78,7 +78,7 @@ const translations = {
       realValue: "Valor real estimado",
       realReturn: "Rendimiento real anual"
     },
-    years: "aÃ±os",
+    years: "años",
     months: "meses"
   },
   en: {
@@ -209,29 +209,29 @@ const translations = {
     locale: "fr-FR",
     htmlLang: "fr",
     ogLocale: "fr_FR",
-    title: "Calculateur d'intÃ©rÃªt composÃ©, prÃªts, hypothÃ¨ques et investissement",
-    metaDescription: "Calculateurs financiers modernes pour intÃ©rÃªt composÃ©, prÃªts, hypothÃ¨ques et investissements avec rÃ©sultats instantanÃ©s, mode sombre et design adaptÃ© Ã  Android.",
+    title: "Calculateur d'intérêt composé, prêts, hypothèques et investissement",
+    metaDescription: "Calculateurs financiers modernes pour intérêt composé, prêts, hypothèques et investissements avec résultats instantanés, mode sombre et design adapté à Android.",
     appName: "Calculateurs financiers",
-    eyebrow: "Suite privÃ©e",
+    eyebrow: "Suite privée",
     language: "Langue",
     dark: "Mode sombre",
     light: "Mode clair",
     ariaDark: "Passer au mode sombre",
     ariaLight: "Passer au mode clair",
     tools: {
-      compound: ["IntÃ©rÃªt composÃ©", "Croissance avec versements", "Croissance future", "Valeur future"],
-      loan: ["PrÃªts", "MensualitÃ© et coÃ»t total", "MensualitÃ©", "Paiement estimÃ©"],
-      mortgage: ["HypothÃ¨ques", "Paiement, taxes et assurance", "Paiement complet", "Paiement mensuel"],
-      investment: ["Investissement", "Objectif et rendement rÃ©el", "Objectif financier", "Valeur projetÃ©e"]
+      compound: ["Intérêt composé", "Croissance avec versements", "Croissance future", "Valeur future"],
+      loan: ["Prêts", "Mensualité et coÃ»t total", "Mensualité", "Paiement estimé"],
+      mortgage: ["Hypothèques", "Paiement, taxes et assurance", "Paiement complet", "Paiement mensuel"],
+      investment: ["Investissement", "Objectif et rendement réel", "Objectif financier", "Valeur projetée"]
     },
     fields: {
       principal: "Capital initial",
       monthly: "Versement mensuel",
       rate: "Taux annuel (%)",
-      years: "DurÃ©e (annÃ©es)",
+      years: "Durée (années)",
       frequency: "Capitalisation",
-      amount: "Montant du prÃªt",
-      months: "DurÃ©e (mois)",
+      amount: "Montant du prêt",
+      months: "Durée (mois)",
       fee: "Frais initiaux",
       price: "Prix du logement",
       down: "Apport initial",
@@ -240,39 +240,39 @@ const translations = {
       investmentPrincipal: "Investissement initial",
       returnRate: "Rendement annuel (%)",
       inflation: "Inflation annuelle (%)",
-      horizon: "Horizon (annÃ©es)",
+      horizon: "Horizon (années)",
       goal: "Objectif"
     },
     options: ["Mensuelle", "Trimestrielle", "Annuelle", "Quotidienne"],
     metrics: {
       gain: "Gain",
-      contributed: "Total versÃ©",
-      interest: "IntÃ©rÃªts gagnÃ©s",
+      contributed: "Total versé",
+      interest: "Intérêts gagnés",
       monthlyContribution: "Versement mensuel",
       horizon: "Horizon",
-      cost: "CoÃ»t",
-      totalPaid: "Total payÃ©",
-      financeCost: "IntÃ©rÃªts + frais",
+      cost: "Coût",
+      totalPaid: "Total payé",
+      financeCost: "Intérêts + frais",
       fee: "Frais initiaux",
-      term: "DurÃ©e",
+      term: "Durée",
       down: "Apport",
-      principalInterest: "Capital et intÃ©rÃªts",
+      principalInterest: "Capital et intérêts",
       escrow: "Taxes + assurance",
-      financed: "Montant financÃ©",
-      downUsed: "Apport utilisÃ©",
+      financed: "Montant financé",
+      downUsed: "Apport utilisé",
       goal: "Objectif",
-      realValue: "Valeur rÃ©elle estimÃ©e",
-      realReturn: "Rendement rÃ©el annuel"
+      realValue: "Valeur réelle estimée",
+      realReturn: "Rendement réel annuel"
     },
-    years: "annÃ©es",
+    years: "années",
     months: "mois"
   },
   pt: {
     locale: "pt-BR",
     htmlLang: "pt",
     ogLocale: "pt_BR",
-    title: "Calculadora de juros compostos, emprÃ©stimos, hipotecas e investimentos",
-    metaDescription: "Calculadoras financeiras modernas para juros compostos, emprÃ©stimos, hipotecas e investimentos com resultados instantÃ¢neos, modo escuro e design adaptado para Android.",
+    title: "Calculadora de juros compostos, empréstimos, hipotecas e investimentos",
+    metaDescription: "Calculadoras financeiras modernas para juros compostos, empréstimos, hipotecas e investimentos com resultados instantâneos, modo escuro e design adaptado para Android.",
     appName: "Calculadoras financeiras",
     eyebrow: "Suite privada",
     language: "Idioma",
@@ -282,7 +282,7 @@ const translations = {
     ariaLight: "Mudar para modo claro",
     tools: {
       compound: ["Juros compostos", "Crescimento com aportes", "Crescimento futuro", "Valor futuro"],
-      loan: ["EmprÃ©stimos", "Parcela e custo total", "Parcela mensal", "Pagamento estimado"],
+      loan: ["Empréstimos", "Parcela e custo total", "Parcela mensal", "Pagamento estimado"],
       mortgage: ["Hipotecas", "Pagamento, impostos e seguro", "Pagamento completo", "Pagamento mensal"],
       investment: ["Investimento", "Meta e retorno real", "Meta financeira", "Valor projetado"]
     },
@@ -291,21 +291,21 @@ const translations = {
       monthly: "Aporte mensal",
       rate: "Taxa anual (%)",
       years: "Tempo (anos)",
-      frequency: "CapitalizaÃ§Ã£o",
-      amount: "Valor do emprÃ©stimo",
+      frequency: "Capitalização",
+      amount: "Valor do empréstimo",
       months: "Prazo (meses)",
       fee: "Taxa inicial",
-      price: "PreÃ§o do imÃ³vel",
+      price: "Preço do imóvel",
       down: "Entrada",
       taxes: "Impostos anuais",
       insurance: "Seguro anual",
       investmentPrincipal: "Investimento inicial",
       returnRate: "Retorno anual (%)",
-      inflation: "InflaÃ§Ã£o anual (%)",
+      inflation: "Inflação anual (%)",
       horizon: "Horizonte (anos)",
       goal: "Meta"
     },
-    options: ["Mensal", "Trimestral", "Anual", "DiÃ¡ria"],
+    options: ["Mensal", "Trimestral", "Anual", "Diária"],
     metrics: {
       gain: "Ganho",
       contributed: "Total aportado",
@@ -333,8 +333,8 @@ const translations = {
     locale: "de-DE",
     htmlLang: "de",
     ogLocale: "de_DE",
-    title: "Rechner fÃ¼r Zinseszins, Darlehen, Hypotheken und Investitionen",
-    metaDescription: "Moderne Finanzrechner fÃ¼r Zinseszins, Darlehen, Hypotheken und Investitionen mit Sofortergebnissen, Dunkelmodus und Android-freundlichem Design.",
+    title: "Rechner für Zinseszins, Darlehen, Hypotheken und Investitionen",
+    metaDescription: "Moderne Finanzrechner für Zinseszins, Darlehen, Hypotheken und Investitionen mit Sofortergebnissen, Dunkelmodus und Android-freundlichem Design.",
     appName: "Finanzrechner",
     eyebrow: "Private Suite",
     language: "Sprache",
@@ -343,8 +343,8 @@ const translations = {
     ariaDark: "Zum Dunkelmodus wechseln",
     ariaLight: "Zum Hellmodus wechseln",
     tools: {
-      compound: ["Zinseszins", "Wachstum mit BeitrÃ¤gen", "ZukÃ¼nftiges Wachstum", "Endwert"],
-      loan: ["Darlehen", "Rate und Gesamtkosten", "Monatsrate", "GeschÃ¤tzte Rate"],
+      compound: ["Zinseszins", "Wachstum mit Beiträgen", "Zukünftiges Wachstum", "Endwert"],
+      loan: ["Darlehen", "Rate und Gesamtkosten", "Monatsrate", "Geschätzte Rate"],
       mortgage: ["Hypotheken", "Rate, Steuern und Versicherung", "Gesamtzahlung", "Monatszahlung"],
       investment: ["Investition", "Ziel und reale Rendite", "Finanzielles Ziel", "Prognosewert"]
     },
@@ -356,18 +356,18 @@ const translations = {
       frequency: "Verzinsung",
       amount: "Darlehensbetrag",
       months: "Laufzeit (Monate)",
-      fee: "AnfangsgebÃ¼hr",
+      fee: "Anfangsgebühr",
       price: "Hauspreis",
       down: "Anzahlung",
-      taxes: "JÃ¤hrliche Steuern",
-      insurance: "JÃ¤hrliche Versicherung",
+      taxes: "Jährliche Steuern",
+      insurance: "Jährliche Versicherung",
       investmentPrincipal: "Startinvestition",
       returnRate: "Jahresrendite (%)",
-      inflation: "JÃ¤hrliche Inflation (%)",
+      inflation: "Jährliche Inflation (%)",
       horizon: "Horizont (Jahre)",
       goal: "Ziel"
     },
-    options: ["Monatlich", "VierteljÃ¤hrlich", "JÃ¤hrlich", "TÃ¤glich"],
+    options: ["Monatlich", "Vierteljährlich", "Jährlich", "Täglich"],
     metrics: {
       gain: "Gewinn",
       contributed: "Gesamt eingezahlt",
@@ -376,8 +376,8 @@ const translations = {
       horizon: "Horizont",
       cost: "Kosten",
       totalPaid: "Gesamt bezahlt",
-      financeCost: "Zinsen + GebÃ¼hren",
-      fee: "AnfangsgebÃ¼hr",
+      financeCost: "Zinsen + Gebühren",
+      fee: "Anfangsgebühr",
       term: "Laufzeit",
       down: "Anzahlung",
       principalInterest: "Tilgung und Zinsen",
@@ -385,7 +385,7 @@ const translations = {
       financed: "Finanzierter Betrag",
       downUsed: "Genutzte Anzahlung",
       goal: "Ziel",
-      realValue: "GeschÃ¤tzter Realwert",
+      realValue: "Geschätzter Realwert",
       realReturn: "Reale Jahresrendite"
     },
     years: "Jahre",
@@ -396,39 +396,39 @@ const translations = {
 const seoCopy = {
   es: {
     compound: {
-      heading: "Calculadora de interÃ©s compuesto online",
-      intro: "Usa esta calculadora de interÃ©s compuesto para estimar el valor futuro de una inversiÃ³n, comparar aportes mensuales y entender cÃ³mo crece el capital con una tasa anual.",
+      heading: "Calculadora de interés compuesto online",
+      intro: "Usa esta calculadora de interés compuesto para estimar el valor futuro de una inversión, comparar aportes mensuales y entender cómo crece el capital con una tasa anual.",
       items: [
-        ["CÃ³mo usar la calculadora de interÃ©s compuesto", "Introduce el capital inicial, el aporte mensual, la tasa anual y el tiempo en aÃ±os. La herramienta calcula el valor futuro, el total aportado y los intereses ganados, datos clave para planificar ahorro, inversiÃ³n y metas financieras."],
-        ["QuÃ© es el interÃ©s compuesto", "El interÃ©s compuesto ocurre cuando los intereses generados se reinvierten y empiezan a producir nuevos intereses. Por eso una inversiÃ³n a largo plazo puede crecer mÃ¡s rÃ¡pido que una cuenta con interÃ©s simple."],
-        ["Palabras clave financieras importantes", "Calculadora de interÃ©s compuesto, inversiÃ³n con aportes mensuales, valor futuro, tasa anual, capitalizaciÃ³n mensual, ahorro a largo plazo y crecimiento del capital son conceptos esenciales para evaluar escenarios financieros."]
+        ["Cómo usar la calculadora de interés compuesto", "Introduce el capital inicial, el aporte mensual, la tasa anual y el tiempo en años. La herramienta calcula el valor futuro, el total aportado y los intereses ganados, datos clave para planificar ahorro, inversión y metas financieras."],
+        ["Qué es el interés compuesto", "El interés compuesto ocurre cuando los intereses generados se reinvierten y empiezan a producir nuevos intereses. Por eso una inversión a largo plazo puede crecer más rápido que una cuenta con interés simple."],
+        ["Palabras clave financieras importantes", "Calculadora de interés compuesto, inversión con aportes mensuales, valor futuro, tasa anual, capitalización mensual, ahorro a largo plazo y crecimiento del capital son conceptos esenciales para evaluar escenarios financieros."]
       ]
     },
     loan: {
-      heading: "Calculadora de prÃ©stamos online",
-      intro: "Calcula la cuota mensual de un prÃ©stamo, el total pagado, los intereses y los cargos para tomar una decisiÃ³n financiera mÃ¡s clara antes de solicitar crÃ©dito.",
+      heading: "Calculadora de préstamos online",
+      intro: "Calcula la cuota mensual de un préstamo, el total pagado, los intereses y los cargos para tomar una decisión financiera más clara antes de solicitar crédito.",
       items: [
-        ["CÃ³mo calcular un prÃ©stamo", "Escribe el monto del prÃ©stamo, la tasa anual, el plazo en meses y cualquier cargo inicial. La calculadora estima el pago mensual y el costo financiero total del crÃ©dito."],
-        ["QuÃ© influye en la cuota mensual", "La cuota mensual depende del capital solicitado, la tasa de interÃ©s anual y la duraciÃ³n del prÃ©stamo. Un plazo mÃ¡s largo puede reducir la cuota, pero normalmente aumenta el total de intereses pagados."],
-        ["TÃ©rminos SEO y financieros", "Calculadora de prÃ©stamos, cuota mensual, tasa de interÃ©s, costo total del prÃ©stamo, amortizaciÃ³n, prÃ©stamo personal y pago estimado son bÃºsquedas frecuentes para comparar opciones de crÃ©dito."]
+        ["Cómo calcular un préstamo", "Escribe el monto del préstamo, la tasa anual, el plazo en meses y cualquier cargo inicial. La calculadora estima el pago mensual y el costo financiero total del crédito."],
+        ["Qué influye en la cuota mensual", "La cuota mensual depende del capital solicitado, la tasa de interés anual y la duración del préstamo. Un plazo más largo puede reducir la cuota, pero normalmente aumenta el total de intereses pagados."],
+        ["Términos SEO y financieros", "Calculadora de préstamos, cuota mensual, tasa de interés, costo total del préstamo, amortización, préstamo personal y pago estimado son búsquedas frecuentes para comparar opciones de crédito."]
       ]
     },
     mortgage: {
       heading: "Calculadora de hipotecas online",
       intro: "Estima el pago mensual de una hipoteca incluyendo capital, intereses, impuestos, seguro e inicial para analizar mejor la compra de una vivienda.",
       items: [
-        ["CÃ³mo estimar una hipoteca", "Agrega el precio de la vivienda, el enganche, la tasa anual, el plazo, los impuestos y el seguro. La calculadora muestra el pago mensual completo y el monto financiado."],
-        ["QuÃ© incluye el pago hipotecario", "Un pago hipotecario suele incluir capital e intereses, ademÃ¡s de impuestos de propiedad y seguro. Separar estos valores ayuda a ver el costo real de comprar casa."],
-        ["Palabras clave para hipotecas", "Calculadora de hipotecas, pago mensual de hipoteca, prÃ©stamo hipotecario, enganche, tasa hipotecaria, impuestos de vivienda y seguro anual son tÃ©rminos Ãºtiles para bÃºsquedas financieras."]
+        ["Cómo estimar una hipoteca", "Agrega el precio de la vivienda, el enganche, la tasa anual, el plazo, los impuestos y el seguro. La calculadora muestra el pago mensual completo y el monto financiado."],
+        ["Qué incluye el pago hipotecario", "Un pago hipotecario suele incluir capital e intereses, además de impuestos de propiedad y seguro. Separar estos valores ayuda a ver el costo real de comprar casa."],
+        ["Palabras clave para hipotecas", "Calculadora de hipotecas, pago mensual de hipoteca, préstamo hipotecario, enganche, tasa hipotecaria, impuestos de vivienda y seguro anual son términos útiles para búsquedas financieras."]
       ]
     },
     investment: {
-      heading: "Calculadora de inversiÃ³n online",
-      intro: "Proyecta una inversiÃ³n con aportes mensuales, rendimiento anual, inflaciÃ³n y meta financiera para visualizar el valor nominal y el valor real estimado.",
+      heading: "Calculadora de inversión online",
+      intro: "Proyecta una inversión con aportes mensuales, rendimiento anual, inflación y meta financiera para visualizar el valor nominal y el valor real estimado.",
       items: [
-        ["CÃ³mo proyectar una inversiÃ³n", "Introduce la inversiÃ³n inicial, el aporte mensual, el rendimiento anual, la inflaciÃ³n, el horizonte y la meta. La calculadora estima el valor futuro y el progreso hacia tu objetivo."],
-        ["Por quÃ© considerar la inflaciÃ³n", "La inflaciÃ³n reduce el poder de compra del dinero. Por eso esta calculadora muestra el valor real estimado, una referencia mÃ¡s Ãºtil para comparar resultados a largo plazo."],
-        ["Conceptos clave de inversiÃ³n", "Calculadora de inversiÃ³n, rendimiento anual, inflaciÃ³n, valor real, valor proyectado, aportes mensuales, meta financiera e inversiÃ³n a largo plazo son tÃ©rminos relevantes para planificar capital."]
+        ["Cómo proyectar una inversión", "Introduce la inversión inicial, el aporte mensual, el rendimiento anual, la inflación, el horizonte y la meta. La calculadora estima el valor futuro y el progreso hacia tu objetivo."],
+        ["Por qué considerar la inflación", "La inflación reduce el poder de compra del dinero. Por eso esta calculadora muestra el valor real estimado, una referencia más útil para comparar resultados a largo plazo."],
+        ["Conceptos clave de inversión", "Calculadora de inversión, rendimiento anual, inflación, valor real, valor proyectado, aportes mensuales, meta financiera e inversión a largo plazo son términos relevantes para planificar capital."]
       ]
     }
   },
@@ -476,7 +476,7 @@ const seoCopy = {
       intro: "Usa questo calcolatore di interesse composto per stimare il valore futuro, confrontare versamenti mensili e capire come cresce il capitale con un tasso annuo.",
       items: [
         ["Come usare il calcolatore di interesse composto", "Inserisci capitale iniziale, versamento mensile, tasso annuo e durata in anni. Lo strumento calcola valore futuro, totale versato e interessi maturati."],
-        ["Che cos'Ã¨ l'interesse composto", "L'interesse composto si crea quando gli interessi maturati vengono reinvestiti e generano nuovi interessi. Per questo gli investimenti a lungo termine possono crescere piÃ¹ rapidamente."],
+        ["Che cos'è l'interesse composto", "L'interesse composto si crea quando gli interessi maturati vengono reinvestiti e generano nuovi interessi. Per questo gli investimenti a lungo termine possono crescere piÃ¹ rapidamente."],
         ["Parole chiave finanziarie", "Calcolatore interesse composto, versamenti mensili, valore futuro, tasso annuo, capitalizzazione mensile, risparmio a lungo termine e crescita del capitale sono concetti importanti."]
       ]
     },
@@ -494,7 +494,7 @@ const seoCopy = {
       intro: "Stima la rata mensile di un mutuo includendo capitale, interessi, tasse, assicurazione e anticipo.",
       items: [
         ["Come stimare un mutuo", "Aggiungi prezzo della casa, anticipo, tasso annuo, durata, tasse e assicurazione. Il calcolatore mostra il pagamento mensile completo e l'importo finanziato."],
-        ["Cosa include la rata del mutuo", "La rata del mutuo include spesso capitale e interessi, oltre a tasse sulla proprietÃ  e assicurazione. Separare questi valori chiarisce il costo reale della casa."],
+        ["Cosa include la rata del mutuo", "La rata del mutuo include spesso capitale e interessi, oltre a tasse sulla proprietà e assicurazione. Separare questi valori chiarisce il costo reale della casa."],
         ["Parole chiave sui mutui", "Calcolatore mutuo, rata mensile mutuo, prestito ipotecario, anticipo, tasso mutuo, tasse casa e assicurazione annuale sono termini di ricerca importanti."]
       ]
     },
@@ -503,46 +503,46 @@ const seoCopy = {
       intro: "Proietta un investimento con versamenti mensili, rendimento annuo, inflazione e obiettivo finanziario per visualizzare valore nominale e reale.",
       items: [
         ["Come proiettare un investimento", "Inserisci investimento iniziale, versamento mensile, rendimento annuo, inflazione, orizzonte e obiettivo. Il calcolatore stima valore futuro e progresso."],
-        ["PerchÃ© considerare l'inflazione", "L'inflazione riduce il potere d'acquisto nel tempo. Per questo il calcolatore mostra anche il valore reale stimato."],
+        ["Perché considerare l'inflazione", "L'inflazione riduce il potere d'acquisto nel tempo. Per questo il calcolatore mostra anche il valore reale stimato."],
         ["Concetti chiave di investimento", "Calcolatore investimento, rendimento annuo, inflazione, valore reale, valore previsto, versamenti mensili, obiettivo finanziario e investimento a lungo termine sono termini rilevanti."]
       ]
     }
   },
   fr: {
     compound: {
-      heading: "Calculateur d'intÃ©rÃªt composÃ© en ligne",
-      intro: "Utilisez ce calculateur d'intÃ©rÃªt composÃ© pour estimer la valeur future, comparer les versements mensuels et comprendre la croissance du capital.",
+      heading: "Calculateur d'intérêt composé en ligne",
+      intro: "Utilisez ce calculateur d'intérêt composé pour estimer la valeur future, comparer les versements mensuels et comprendre la croissance du capital.",
       items: [
-        ["Comment utiliser le calculateur d'intÃ©rÃªt composÃ©", "Saisissez le capital initial, le versement mensuel, le taux annuel et la durÃ©e en annÃ©es. L'outil calcule la valeur future, le total versÃ© et les intÃ©rÃªts gagnÃ©s."],
-        ["Qu'est-ce que l'intÃ©rÃªt composÃ©", "L'intÃ©rÃªt composÃ© apparaÃ®t lorsque les intÃ©rÃªts gÃ©nÃ©rÃ©s sont rÃ©investis et produisent Ã  leur tour de nouveaux intÃ©rÃªts. C'est un moteur important de la croissance Ã  long terme."],
-        ["Mots-clÃ©s financiers", "Calculateur intÃ©rÃªt composÃ©, versements mensuels, valeur future, taux annuel, capitalisation mensuelle, Ã©pargne long terme et croissance du capital sont des notions essentielles."]
+        ["Comment utiliser le calculateur d'intérêt composé", "Saisissez le capital initial, le versement mensuel, le taux annuel et la durée en années. L'outil calcule la valeur future, le total versé et les intérêts gagnés."],
+        ["Qu'est-ce que l'intérêt composé", "L'intérêt composé apparaÃ®t lorsque les intérêts générés sont réinvestis et produisent à leur tour de nouveaux intérêts. C'est un moteur important de la croissance à long terme."],
+        ["Mots-clés financiers", "Calculateur intérêt composé, versements mensuels, valeur future, taux annuel, capitalisation mensuelle, épargne long terme et croissance du capital sont des notions essentielles."]
       ]
     },
     loan: {
-      heading: "Calculateur de prÃªt en ligne",
-      intro: "Calculez la mensualitÃ© d'un prÃªt, le total payÃ©, les intÃ©rÃªts et les frais avant de comparer des options de crÃ©dit.",
+      heading: "Calculateur de prêt en ligne",
+      intro: "Calculez la mensualité d'un prêt, le total payé, les intérêts et les frais avant de comparer des options de crédit.",
       items: [
-        ["Comment calculer un prÃªt", "Indiquez le montant du prÃªt, le taux annuel, la durÃ©e en mois et les frais initiaux. Le calculateur estime la mensualitÃ© et le coÃ»t total du financement."],
-        ["Ce qui influence la mensualitÃ©", "La mensualitÃ© dÃ©pend du montant empruntÃ©, du taux d'intÃ©rÃªt annuel et de la durÃ©e. Une durÃ©e plus longue peut rÃ©duire la mensualitÃ© mais augmenter les intÃ©rÃªts totaux."],
-        ["Termes SEO et financiers", "Calculateur de prÃªt, mensualitÃ©, taux d'intÃ©rÃªt, coÃ»t total du prÃªt, amortissement, prÃªt personnel et paiement estimÃ© sont des recherches courantes."]
+        ["Comment calculer un prêt", "Indiquez le montant du prêt, le taux annuel, la durée en mois et les frais initiaux. Le calculateur estime la mensualité et le coÃ»t total du financement."],
+        ["Ce qui influence la mensualité", "La mensualité dépend du montant emprunté, du taux d'intérêt annuel et de la durée. Une durée plus longue peut réduire la mensualité mais augmenter les intérêts totaux."],
+        ["Termes SEO et financiers", "Calculateur de prêt, mensualité, taux d'intérêt, coÃ»t total du prêt, amortissement, prêt personnel et paiement estimé sont des recherches courantes."]
       ]
     },
     mortgage: {
-      heading: "Calculateur d'hypothÃ¨que en ligne",
-      intro: "Estimez le paiement mensuel d'une hypothÃ¨que avec capital, intÃ©rÃªts, taxes, assurance et apport initial.",
+      heading: "Calculateur d'hypothèque en ligne",
+      intro: "Estimez le paiement mensuel d'une hypothèque avec capital, intérêts, taxes, assurance et apport initial.",
       items: [
-        ["Comment estimer une hypothÃ¨que", "Ajoutez le prix du logement, l'apport, le taux annuel, la durÃ©e, les taxes et l'assurance. Le calculateur affiche le paiement complet et le montant financÃ©."],
-        ["Ce qu'inclut le paiement hypothÃ©caire", "Un paiement hypothÃ©caire inclut souvent capital et intÃ©rÃªts, ainsi que taxes fonciÃ¨res et assurance. Les sÃ©parer aide Ã  comprendre le coÃ»t rÃ©el."],
-        ["Mots-clÃ©s hypothÃ©caires", "Calculateur hypothÃ¨que, paiement mensuel hypothÃ¨que, prÃªt immobilier, apport, taux hypothÃ©caire, taxes logement et assurance annuelle sont des termes utiles."]
+        ["Comment estimer une hypothèque", "Ajoutez le prix du logement, l'apport, le taux annuel, la durée, les taxes et l'assurance. Le calculateur affiche le paiement complet et le montant financé."],
+        ["Ce qu'inclut le paiement hypothécaire", "Un paiement hypothécaire inclut souvent capital et intérêts, ainsi que taxes foncières et assurance. Les séparer aide à comprendre le coÃ»t réel."],
+        ["Mots-clés hypothécaires", "Calculateur hypothèque, paiement mensuel hypothèque, prêt immobilier, apport, taux hypothécaire, taxes logement et assurance annuelle sont des termes utiles."]
       ]
     },
     investment: {
       heading: "Calculateur d'investissement en ligne",
-      intro: "Projetez un investissement avec versements mensuels, rendement annuel, inflation et objectif financier pour voir la valeur nominale et rÃ©elle estimÃ©e.",
+      intro: "Projetez un investissement avec versements mensuels, rendement annuel, inflation et objectif financier pour voir la valeur nominale et réelle estimée.",
       items: [
         ["Comment projeter un investissement", "Saisissez l'investissement initial, le versement mensuel, le rendement annuel, l'inflation, l'horizon et l'objectif. Le calculateur estime la valeur future."],
-        ["Pourquoi l'inflation compte", "L'inflation rÃ©duit le pouvoir d'achat au fil du temps. Le calculateur affiche donc une valeur rÃ©elle estimÃ©e pour une comparaison plus utile."],
-        ["Concepts clÃ©s d'investissement", "Calculateur investissement, rendement annuel, inflation, valeur rÃ©elle, valeur projetÃ©e, versements mensuels, objectif financier et investissement long terme sont des termes importants."]
+        ["Pourquoi l'inflation compte", "L'inflation réduit le pouvoir d'achat au fil du temps. Le calculateur affiche donc une valeur réelle estimée pour une comparaison plus utile."],
+        ["Concepts clés d'investissement", "Calculateur investissement, rendement annuel, inflation, valeur réelle, valeur projetée, versements mensuels, objectif financier et investissement long terme sont des termes importants."]
       ]
     }
   },
@@ -552,73 +552,73 @@ const seoCopy = {
       intro: "Use esta calculadora de juros compostos para estimar valor futuro, comparar aportes mensais e entender o crescimento do capital.",
       items: [
         ["Como usar a calculadora de juros compostos", "Informe capital inicial, aporte mensal, taxa anual e tempo em anos. A ferramenta calcula valor futuro, total aportado e juros ganhos."],
-        ["O que sÃ£o juros compostos", "Juros compostos acontecem quando os juros gerados sÃ£o reinvestidos e passam a gerar novos juros. Isso favorece o crescimento no longo prazo."],
-        ["Palavras-chave financeiras", "Calculadora de juros compostos, aportes mensais, valor futuro, taxa anual, capitalizaÃ§Ã£o mensal, poupanÃ§a de longo prazo e crescimento do capital sÃ£o termos importantes."]
+        ["O que são juros compostos", "Juros compostos acontecem quando os juros gerados são reinvestidos e passam a gerar novos juros. Isso favorece o crescimento no longo prazo."],
+        ["Palavras-chave financeiras", "Calculadora de juros compostos, aportes mensais, valor futuro, taxa anual, capitalização mensal, poupança de longo prazo e crescimento do capital são termos importantes."]
       ]
     },
     loan: {
-      heading: "Calculadora online de emprÃ©stimos",
-      intro: "Calcule parcela mensal, total pago, juros e taxas de um emprÃ©stimo antes de comparar opÃ§Ãµes de crÃ©dito.",
+      heading: "Calculadora online de empréstimos",
+      intro: "Calcule parcela mensal, total pago, juros e taxas de um empréstimo antes de comparar opçÃµes de crédito.",
       items: [
-        ["Como calcular um emprÃ©stimo", "Informe valor do emprÃ©stimo, taxa anual, prazo em meses e taxa inicial. A calculadora estima a parcela mensal e o custo financeiro total."],
+        ["Como calcular um empréstimo", "Informe valor do empréstimo, taxa anual, prazo em meses e taxa inicial. A calculadora estima a parcela mensal e o custo financeiro total."],
         ["O que afeta a parcela mensal", "A parcela depende do valor financiado, da taxa de juros anual e do prazo. Um prazo maior pode reduzir a parcela, mas aumentar os juros totais."],
-        ["Termos financeiros Ãºteis", "Calculadora de emprÃ©stimos, parcela mensal, taxa de juros, custo total do emprÃ©stimo, amortizaÃ§Ã£o, emprÃ©stimo pessoal e pagamento estimado sÃ£o buscas comuns."]
+        ["Termos financeiros úteis", "Calculadora de empréstimos, parcela mensal, taxa de juros, custo total do empréstimo, amortização, empréstimo pessoal e pagamento estimado são buscas comuns."]
       ]
     },
     mortgage: {
       heading: "Calculadora online de hipotecas",
       intro: "Estime o pagamento mensal de uma hipoteca com principal, juros, impostos, seguro e entrada.",
       items: [
-        ["Como estimar uma hipoteca", "Adicione preÃ§o do imÃ³vel, entrada, taxa anual, prazo, impostos e seguro. A calculadora mostra o pagamento mensal completo e o valor financiado."],
-        ["O que inclui o pagamento hipotecÃ¡rio", "O pagamento costuma incluir principal e juros, alÃ©m de impostos e seguro. Separar esses valores ajuda a entender o custo real."],
-        ["Palavras-chave de hipoteca", "Calculadora de hipoteca, pagamento mensal, financiamento imobiliÃ¡rio, entrada, taxa hipotecÃ¡ria, impostos do imÃ³vel e seguro anual sÃ£o termos Ãºteis."]
+        ["Como estimar uma hipoteca", "Adicione preço do imóvel, entrada, taxa anual, prazo, impostos e seguro. A calculadora mostra o pagamento mensal completo e o valor financiado."],
+        ["O que inclui o pagamento hipotecário", "O pagamento costuma incluir principal e juros, além de impostos e seguro. Separar esses valores ajuda a entender o custo real."],
+        ["Palavras-chave de hipoteca", "Calculadora de hipoteca, pagamento mensal, financiamento imobiliário, entrada, taxa hipotecária, impostos do imóvel e seguro anual são termos úteis."]
       ]
     },
     investment: {
       heading: "Calculadora online de investimento",
-      intro: "Projete um investimento com aportes mensais, retorno anual, inflaÃ§Ã£o e meta financeira para ver valor nominal e real estimado.",
+      intro: "Projete um investimento com aportes mensais, retorno anual, inflação e meta financeira para ver valor nominal e real estimado.",
       items: [
-        ["Como projetar um investimento", "Informe investimento inicial, aporte mensal, retorno anual, inflaÃ§Ã£o, horizonte e meta. A calculadora estima o valor futuro e o progresso."],
-        ["Por que considerar a inflaÃ§Ã£o", "A inflaÃ§Ã£o reduz o poder de compra ao longo do tempo. Por isso a calculadora mostra tambÃ©m o valor real estimado."],
-        ["Conceitos-chave de investimento", "Calculadora de investimento, retorno anual, inflaÃ§Ã£o, valor real, valor projetado, aportes mensais, meta financeira e longo prazo sÃ£o termos relevantes."]
+        ["Como projetar um investimento", "Informe investimento inicial, aporte mensal, retorno anual, inflação, horizonte e meta. A calculadora estima o valor futuro e o progresso."],
+        ["Por que considerar a inflação", "A inflação reduz o poder de compra ao longo do tempo. Por isso a calculadora mostra também o valor real estimado."],
+        ["Conceitos-chave de investimento", "Calculadora de investimento, retorno anual, inflação, valor real, valor projetado, aportes mensais, meta financeira e longo prazo são termos relevantes."]
       ]
     }
   },
   de: {
     compound: {
       heading: "Online-Zinseszinsrechner",
-      intro: "Nutzen Sie diesen Zinseszinsrechner, um Endwert, monatliche BeitrÃ¤ge und Kapitalwachstum mit einem Jahreszins zu schÃ¤tzen.",
+      intro: "Nutzen Sie diesen Zinseszinsrechner, um Endwert, monatliche Beiträge und Kapitalwachstum mit einem Jahreszins zu schätzen.",
       items: [
         ["So verwenden Sie den Zinseszinsrechner", "Geben Sie Startkapital, monatlichen Beitrag, Jahreszins und Laufzeit ein. Das Tool berechnet Endwert, Einzahlungen und verdiente Zinsen."],
         ["Was Zinseszins bedeutet", "Zinseszins entsteht, wenn erzielte Zinsen wieder angelegt werden und weitere Zinsen erzeugen. Dadurch kann Kapital langfristig schneller wachsen."],
-        ["Wichtige Finanzbegriffe", "Zinseszinsrechner, monatliche BeitrÃ¤ge, Endwert, Jahreszins, monatliche Verzinsung, langfristiges Sparen und Kapitalwachstum sind wichtige Suchbegriffe."]
+        ["Wichtige Finanzbegriffe", "Zinseszinsrechner, monatliche Beiträge, Endwert, Jahreszins, monatliche Verzinsung, langfristiges Sparen und Kapitalwachstum sind wichtige Suchbegriffe."]
       ]
     },
     loan: {
       heading: "Online-Darlehensrechner",
-      intro: "Berechnen Sie Monatsrate, Gesamtzahlung, Zinsen und GebÃ¼hren eines Darlehens, bevor Sie Kreditangebote vergleichen.",
+      intro: "Berechnen Sie Monatsrate, Gesamtzahlung, Zinsen und Gebühren eines Darlehens, bevor Sie Kreditangebote vergleichen.",
       items: [
-        ["So berechnen Sie ein Darlehen", "Geben Sie Darlehensbetrag, Jahreszins, Laufzeit in Monaten und AnfangsgebÃ¼hr ein. Der Rechner schÃ¤tzt Monatsrate und Gesamtkosten."],
-        ["Was die Monatsrate beeinflusst", "Die Rate hÃ¤ngt von Betrag, Jahreszins und Laufzeit ab. Eine lÃ¤ngere Laufzeit kann die Rate senken, erhÃ¶ht aber oft die Gesamtzinsen."],
-        ["Finanzielle Suchbegriffe", "Darlehensrechner, Monatsrate, Zinssatz, Gesamtkosten, Tilgung, Privatkredit und geschÃ¤tzte Zahlung sind hÃ¤ufige Begriffe."]
+        ["So berechnen Sie ein Darlehen", "Geben Sie Darlehensbetrag, Jahreszins, Laufzeit in Monaten und Anfangsgebühr ein. Der Rechner schätzt Monatsrate und Gesamtkosten."],
+        ["Was die Monatsrate beeinflusst", "Die Rate hängt von Betrag, Jahreszins und Laufzeit ab. Eine längere Laufzeit kann die Rate senken, erhöht aber oft die Gesamtzinsen."],
+        ["Finanzielle Suchbegriffe", "Darlehensrechner, Monatsrate, Zinssatz, Gesamtkosten, Tilgung, Privatkredit und geschätzte Zahlung sind häufige Begriffe."]
       ]
     },
     mortgage: {
       heading: "Online-Hypothekenrechner",
-      intro: "SchÃ¤tzen Sie eine monatliche Hypothekenzahlung mit Tilgung, Zinsen, Steuern, Versicherung und Anzahlung.",
+      intro: "Schätzen Sie eine monatliche Hypothekenzahlung mit Tilgung, Zinsen, Steuern, Versicherung und Anzahlung.",
       items: [
-        ["So schÃ¤tzen Sie eine Hypothek", "FÃ¼gen Sie Hauspreis, Anzahlung, Jahreszins, Laufzeit, Steuern und Versicherung hinzu. Der Rechner zeigt Monatszahlung und finanzierten Betrag."],
-        ["Was eine Hypothekenzahlung enthÃ¤lt", "Eine Hypothekenzahlung enthÃ¤lt oft Tilgung und Zinsen sowie Grundsteuern und Versicherung. Die Aufteilung zeigt die tatsÃ¤chlichen Kosten."],
-        ["Hypotheken-Keywords", "Hypothekenrechner, monatliche Hypothekenzahlung, Immobilienkredit, Anzahlung, Hypothekenzins, Grundsteuer und Jahresversicherung sind nÃ¼tzliche Begriffe."]
+        ["So schätzen Sie eine Hypothek", "Fügen Sie Hauspreis, Anzahlung, Jahreszins, Laufzeit, Steuern und Versicherung hinzu. Der Rechner zeigt Monatszahlung und finanzierten Betrag."],
+        ["Was eine Hypothekenzahlung enthält", "Eine Hypothekenzahlung enthält oft Tilgung und Zinsen sowie Grundsteuern und Versicherung. Die Aufteilung zeigt die tatsächlichen Kosten."],
+        ["Hypotheken-Keywords", "Hypothekenrechner, monatliche Hypothekenzahlung, Immobilienkredit, Anzahlung, Hypothekenzins, Grundsteuer und Jahresversicherung sind nützliche Begriffe."]
       ]
     },
     investment: {
       heading: "Online-Investitionsrechner",
-      intro: "Projizieren Sie eine Investition mit monatlichen BeitrÃ¤gen, Jahresrendite, Inflation und Finanzziel fÃ¼r nominalen und realen Wert.",
+      intro: "Projizieren Sie eine Investition mit monatlichen Beiträgen, Jahresrendite, Inflation und Finanzziel für nominalen und realen Wert.",
       items: [
-        ["So projizieren Sie eine Investition", "Geben Sie Startinvestition, monatlichen Beitrag, Jahresrendite, Inflation, Horizont und Ziel ein. Der Rechner schÃ¤tzt Endwert und Fortschritt."],
-        ["Warum Inflation wichtig ist", "Inflation senkt die Kaufkraft im Laufe der Zeit. Deshalb zeigt der Rechner auch einen geschÃ¤tzten realen Wert."],
-        ["Wichtige Anlagebegriffe", "Investitionsrechner, Jahresrendite, Inflation, realer Wert, Prognosewert, monatliche BeitrÃ¤ge, Finanzziel und langfristiges Investieren sind relevante Begriffe."]
+        ["So projizieren Sie eine Investition", "Geben Sie Startinvestition, monatlichen Beitrag, Jahresrendite, Inflation, Horizont und Ziel ein. Der Rechner schätzt Endwert und Fortschritt."],
+        ["Warum Inflation wichtig ist", "Inflation senkt die Kaufkraft im Laufe der Zeit. Deshalb zeigt der Rechner auch einen geschätzten realen Wert."],
+        ["Wichtige Anlagebegriffe", "Investitionsrechner, Jahresrendite, Inflation, realer Wert, Prognosewert, monatliche Beiträge, Finanzziel und langfristiges Investieren sind relevante Begriffe."]
       ]
     }
   }
@@ -922,7 +922,7 @@ function setLanguage(nextLanguage) {
 function initialTheme() {
   const saved = localStorage.getItem("finance-theme");
   if (saved === "dark" || saved === "light") return saved;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  return "dark";
 }
 
 function initialLanguage() {
@@ -951,5 +951,6 @@ languageSelect.addEventListener("change", () => {
 language = initialLanguage();
 setLanguage(language);
 setTheme(initialTheme());
+
 
 
