@@ -405,6 +405,73 @@ select:focus {
   gap: 12px;
 }
 
+.seo-accordion {
+  margin-top: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.seo-heading {
+  margin: 0;
+  font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+  line-height: 1.15;
+}
+
+.seo-intro {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.seo-details {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  overflow: hidden;
+}
+
+.seo-details summary {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 18px;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 800;
+  list-style: none;
+}
+
+.seo-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.seo-details summary::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--ink);
+  background: var(--hover);
+}
+
+.seo-details[open] summary::after {
+  content: "-";
+}
+
+.seo-details p {
+  margin: 0;
+  padding: 0 18px 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .metric {
   min-height: 92px;
   padding: 15px;
