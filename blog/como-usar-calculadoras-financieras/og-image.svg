@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Calculadoras financieras</title>
+  <desc id="desc">Vista previa del articulo sobre calculadoras financieras.</desc>
+  <rect width="1200" height="630" fill="#0c1210"/>
+  <path d="M0 0h1200v630H0z" fill="url(#bg)"/>
+  <circle cx="975" cy="120" r="190" fill="#ff8066" opacity=".18"/>
+  <circle cx="210" cy="520" r="230" fill="#83d5bd" opacity=".16"/>
+  <rect x="82" y="78" width="1036" height="474" rx="36" fill="#1c2521" stroke="#34433c" stroke-width="2"/>
+  <text x="132" y="168" fill="#83d5bd" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">BLOG FINANCIERO</text>
+  <text x="132" y="258" fill="#f5faf6" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="800">Como usar</text>
+  <text x="132" y="340" fill="#f5faf6" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="800">calculadoras financieras</text>
+  <text x="132" y="420" fill="#aebcb6" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="600">Interes compuesto - Prestamos - Hipotecas - Inversion</text>
+  <g transform="translate(785 198)">
+    <rect width="235" height="235" rx="32" fill="#202c27" stroke="#34433c" stroke-width="2"/>
+    <path d="M54 157l39-42 38 24 54-72" fill="none" stroke="#83d5bd" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="54" cy="157" r="13" fill="#5d88ff"/>
+    <circle cx="93" cy="115" r="13" fill="#e9ba55"/>
+    <circle cx="131" cy="139" r="13" fill="#ff8066"/>
+    <circle cx="185" cy="67" r="13" fill="#83d5bd"/>
+  </g>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1200" y1="0" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#83d5bd" stop-opacity=".16"/>
+      <stop offset=".55" stop-color="#0c1210"/>
+      <stop offset="1" stop-color="#5d88ff" stop-opacity=".15"/>
+    </linearGradient>
+  </defs>
+</svg>
