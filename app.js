@@ -17,6 +17,7 @@ const descriptionMeta = document.querySelector('meta[name="description"]');
 const ogTitle = document.querySelector('meta[property="og:title"]');
 const ogDescription = document.querySelector('meta[property="og:description"]');
 const ogLocale = document.querySelector('meta[property="og:locale"]');
+const toolOrder = ["compound", "loan", "mortgage", "investment", "savings"];
 
 const translations = {
   es: {
@@ -36,7 +37,8 @@ const translations = {
       compound: ["Interés compuesto", "Crecimiento por aportes", "Crecimiento futuro", "Valor futuro"],
       loan: ["Préstamos", "Cuota y costo total", "Cuota mensual", "Pago estimado"],
       mortgage: ["Hipotecas", "Pago, seguros e impuestos", "Pago completo", "Pago mensual"],
-      investment: ["Inversión", "Meta y rendimiento real", "Meta financiera", "Valor proyectado"]
+      investment: ["Inversión", "Meta y rendimiento real", "Meta financiera", "Valor proyectado"],
+      savings: ["Ahorro meta", "Aporte necesario", "Plan de ahorro", "Aporte mensual"]
     },
     fields: {
       principal: "Capital inicial",
@@ -55,7 +57,10 @@ const translations = {
       returnRate: "Rendimiento anual (%)",
       inflation: "Inflación anual (%)",
       horizon: "Horizonte (años)",
-      goal: "Meta"
+      goal: "Meta",
+      savingsGoal: "Meta de ahorro",
+      currentSavings: "Ahorro actual",
+      expectedRate: "Rendimiento anual esperado (%)"
     },
     options: ["Mensual", "Trimestral", "Anual", "Diaria"],
     metrics: {
@@ -76,7 +81,10 @@ const translations = {
       downUsed: "Inicial usada",
       goal: "Meta",
       realValue: "Valor real estimado",
-      realReturn: "Rendimiento real anual"
+      realReturn: "Rendimiento real anual",
+      remaining: "Falta por ahorrar",
+      savedNow: "Ahorro actual",
+      projectedInterest: "Interés proyectado"
     },
     years: "años",
     months: "meses"
@@ -98,7 +106,8 @@ const translations = {
       compound: ["Compound interest", "Growth with contributions", "Future growth", "Future value"],
       loan: ["Loans", "Payment and total cost", "Monthly payment", "Estimated payment"],
       mortgage: ["Mortgages", "Payment, taxes and insurance", "Full payment", "Monthly payment"],
-      investment: ["Investment", "Goal and real return", "Financial goal", "Projected value"]
+      investment: ["Investment", "Goal and real return", "Financial goal", "Projected value"],
+      savings: ["Savings goal", "Required contribution", "Savings plan", "Monthly contribution"]
     },
     fields: {
       principal: "Initial capital",
@@ -117,7 +126,10 @@ const translations = {
       returnRate: "Annual return (%)",
       inflation: "Annual inflation (%)",
       horizon: "Horizon (years)",
-      goal: "Goal"
+      goal: "Goal",
+      savingsGoal: "Savings goal",
+      currentSavings: "Current savings",
+      expectedRate: "Expected annual return (%)"
     },
     options: ["Monthly", "Quarterly", "Yearly", "Daily"],
     metrics: {
@@ -138,7 +150,10 @@ const translations = {
       downUsed: "Down used",
       goal: "Goal",
       realValue: "Estimated real value",
-      realReturn: "Annual real return"
+      realReturn: "Annual real return",
+      remaining: "Left to save",
+      savedNow: "Current savings",
+      projectedInterest: "Projected interest"
     },
     years: "years",
     months: "months"
@@ -160,7 +175,8 @@ const translations = {
       compound: ["Interesse composto", "Crescita con versamenti", "Crescita futura", "Valore futuro"],
       loan: ["Prestiti", "Rata e costo totale", "Rata mensile", "Pagamento stimato"],
       mortgage: ["Mutui", "Rata, tasse e assicurazione", "Pagamento completo", "Rata mensile"],
-      investment: ["Investimento", "Obiettivo e rendimento reale", "Obiettivo finanziario", "Valore previsto"]
+      investment: ["Investimento", "Obiettivo e rendimento reale", "Obiettivo finanziario", "Valore previsto"],
+      savings: ["Obiettivo risparmio", "Versamento necessario", "Piano di risparmio", "Versamento mensile"]
     },
     fields: {
       principal: "Capitale iniziale",
@@ -179,7 +195,10 @@ const translations = {
       returnRate: "Rendimento annuo (%)",
       inflation: "Inflazione annua (%)",
       horizon: "Orizzonte (anni)",
-      goal: "Obiettivo"
+      goal: "Obiettivo",
+      savingsGoal: "Obiettivo di risparmio",
+      currentSavings: "Risparmio attuale",
+      expectedRate: "Rendimento annuo previsto (%)"
     },
     options: ["Mensile", "Trimestrale", "Annuale", "Giornaliera"],
     metrics: {
@@ -200,7 +219,10 @@ const translations = {
       downUsed: "Anticipo usato",
       goal: "Obiettivo",
       realValue: "Valore reale stimato",
-      realReturn: "Rendimento reale annuo"
+      realReturn: "Rendimento reale annuo",
+      remaining: "Ancora da risparmiare",
+      savedNow: "Risparmio attuale",
+      projectedInterest: "Interesse previsto"
     },
     years: "anni",
     months: "mesi"
@@ -222,7 +244,8 @@ const translations = {
       compound: ["Intérêt composé", "Croissance avec versements", "Croissance future", "Valeur future"],
       loan: ["Prêts", "Mensualité et coÃ»t total", "Mensualité", "Paiement estimé"],
       mortgage: ["Hypothèques", "Paiement, taxes et assurance", "Paiement complet", "Paiement mensuel"],
-      investment: ["Investissement", "Objectif et rendement réel", "Objectif financier", "Valeur projetée"]
+      investment: ["Investissement", "Objectif et rendement réel", "Objectif financier", "Valeur projetée"],
+      savings: ["Objectif épargne", "Versement nécessaire", "Plan d'épargne", "Versement mensuel"]
     },
     fields: {
       principal: "Capital initial",
@@ -241,7 +264,10 @@ const translations = {
       returnRate: "Rendement annuel (%)",
       inflation: "Inflation annuelle (%)",
       horizon: "Horizon (années)",
-      goal: "Objectif"
+      goal: "Objectif",
+      savingsGoal: "Objectif d'épargne",
+      currentSavings: "Épargne actuelle",
+      expectedRate: "Rendement annuel prévu (%)"
     },
     options: ["Mensuelle", "Trimestrielle", "Annuelle", "Quotidienne"],
     metrics: {
@@ -262,7 +288,10 @@ const translations = {
       downUsed: "Apport utilisé",
       goal: "Objectif",
       realValue: "Valeur réelle estimée",
-      realReturn: "Rendement réel annuel"
+      realReturn: "Rendement réel annuel",
+      remaining: "Reste à épargner",
+      savedNow: "Épargne actuelle",
+      projectedInterest: "Intérêt projeté"
     },
     years: "années",
     months: "mois"
@@ -284,7 +313,8 @@ const translations = {
       compound: ["Juros compostos", "Crescimento com aportes", "Crescimento futuro", "Valor futuro"],
       loan: ["Empréstimos", "Parcela e custo total", "Parcela mensal", "Pagamento estimado"],
       mortgage: ["Hipotecas", "Pagamento, impostos e seguro", "Pagamento completo", "Pagamento mensal"],
-      investment: ["Investimento", "Meta e retorno real", "Meta financeira", "Valor projetado"]
+      investment: ["Investimento", "Meta e retorno real", "Meta financeira", "Valor projetado"],
+      savings: ["Meta de poupança", "Aporte necessário", "Plano de poupança", "Aporte mensal"]
     },
     fields: {
       principal: "Capital inicial",
@@ -303,7 +333,10 @@ const translations = {
       returnRate: "Retorno anual (%)",
       inflation: "Inflação anual (%)",
       horizon: "Horizonte (anos)",
-      goal: "Meta"
+      goal: "Meta",
+      savingsGoal: "Meta de poupança",
+      currentSavings: "Poupança atual",
+      expectedRate: "Retorno anual esperado (%)"
     },
     options: ["Mensal", "Trimestral", "Anual", "Diária"],
     metrics: {
@@ -324,7 +357,10 @@ const translations = {
       downUsed: "Entrada usada",
       goal: "Meta",
       realValue: "Valor real estimado",
-      realReturn: "Retorno real anual"
+      realReturn: "Retorno real anual",
+      remaining: "Falta poupar",
+      savedNow: "Poupança atual",
+      projectedInterest: "Juros projetados"
     },
     years: "anos",
     months: "meses"
@@ -346,7 +382,8 @@ const translations = {
       compound: ["Zinseszins", "Wachstum mit Beiträgen", "Zukünftiges Wachstum", "Endwert"],
       loan: ["Darlehen", "Rate und Gesamtkosten", "Monatsrate", "Geschätzte Rate"],
       mortgage: ["Hypotheken", "Rate, Steuern und Versicherung", "Gesamtzahlung", "Monatszahlung"],
-      investment: ["Investition", "Ziel und reale Rendite", "Finanzielles Ziel", "Prognosewert"]
+      investment: ["Investition", "Ziel und reale Rendite", "Finanzielles Ziel", "Prognosewert"],
+      savings: ["Sparziel", "Nötiger Beitrag", "Sparplan", "Monatsbeitrag"]
     },
     fields: {
       principal: "Startkapital",
@@ -365,7 +402,10 @@ const translations = {
       returnRate: "Jahresrendite (%)",
       inflation: "Jährliche Inflation (%)",
       horizon: "Horizont (Jahre)",
-      goal: "Ziel"
+      goal: "Ziel",
+      savingsGoal: "Sparziel",
+      currentSavings: "Aktuelle Ersparnisse",
+      expectedRate: "Erwartete Jahresrendite (%)"
     },
     options: ["Monatlich", "Vierteljährlich", "Jährlich", "Täglich"],
     metrics: {
@@ -386,7 +426,10 @@ const translations = {
       downUsed: "Genutzte Anzahlung",
       goal: "Ziel",
       realValue: "Geschätzter Realwert",
-      realReturn: "Reale Jahresrendite"
+      realReturn: "Reale Jahresrendite",
+      remaining: "Noch zu sparen",
+      savedNow: "Aktuelle Ersparnisse",
+      projectedInterest: "Prognostizierte Zinsen"
     },
     years: "Jahre",
     months: "Monate"
@@ -410,6 +453,7 @@ const seoCopy = {
       items: [
         ["Cómo calcular un préstamo", "Escribe el monto del préstamo, la tasa anual, el plazo en meses y cualquier cargo inicial. La calculadora estima el pago mensual y el costo financiero total del crédito."],
         ["Qué influye en la cuota mensual", "La cuota mensual depende del capital solicitado, la tasa de interés anual y la duración del préstamo. Un plazo más largo puede reducir la cuota, pero normalmente aumenta el total de intereses pagados."],
+        ["Qué es un préstamo", "Un préstamo es dinero que una entidad o persona entrega con el compromiso de devolverlo en pagos futuros. Normalmente incluye intereses, plazo, cargos y condiciones de pago. Entender estos elementos ayuda a comparar opciones, evitar cuotas difíciles de sostener y calcular el costo real antes de aceptar una oferta."],
         ["Términos SEO y financieros", "Calculadora de préstamos, cuota mensual, tasa de interés, costo total del préstamo, amortización, préstamo personal y pago estimado son búsquedas frecuentes para comparar opciones de crédito."]
       ]
     },
@@ -419,6 +463,7 @@ const seoCopy = {
       items: [
         ["Cómo estimar una hipoteca", "Agrega el precio de la vivienda, el enganche, la tasa anual, el plazo, los impuestos y el seguro. La calculadora muestra el pago mensual completo y el monto financiado."],
         ["Qué incluye el pago hipotecario", "Un pago hipotecario suele incluir capital e intereses, además de impuestos de propiedad y seguro. Separar estos valores ayuda a ver el costo real de comprar casa."],
+        ["Qué es una hipoteca", "Una hipoteca es un préstamo usado para comprar una vivienda, donde la propiedad funciona como garantía del pago. Su costo depende del precio, enganche, tasa, plazo, impuestos y seguro. Revisar estos datos permite estimar si el pago mensual encaja con el presupuesto y cuánto capital se financiará."],
         ["Palabras clave para hipotecas", "Calculadora de hipotecas, pago mensual de hipoteca, préstamo hipotecario, enganche, tasa hipotecaria, impuestos de vivienda y seguro anual son términos útiles para búsquedas financieras."]
       ]
     },
@@ -428,7 +473,17 @@ const seoCopy = {
       items: [
         ["Cómo proyectar una inversión", "Introduce la inversión inicial, el aporte mensual, el rendimiento anual, la inflación, el horizonte y la meta. La calculadora estima el valor futuro y el progreso hacia tu objetivo."],
         ["Por qué considerar la inflación", "La inflación reduce el poder de compra del dinero. Por eso esta calculadora muestra el valor real estimado, una referencia más útil para comparar resultados a largo plazo."],
+        ["Qué es una inversión", "Una inversión consiste en colocar dinero en un activo o plan con la expectativa de obtener rendimiento en el tiempo. Puede crecer, bajar o variar según el mercado, la tasa esperada y el plazo. Por eso conviene mirar aportes, inflación y meta antes de decidir cuánto invertir cada mes."],
         ["Conceptos clave de inversión", "Calculadora de inversión, rendimiento anual, inflación, valor real, valor proyectado, aportes mensuales, meta financiera e inversión a largo plazo son términos relevantes para planificar capital."]
+      ]
+    },
+    savings: {
+      heading: "Calculadora de ahorro para una meta",
+      intro: "Calcula cuánto necesitas ahorrar cada mes para llegar a una meta específica considerando tu ahorro actual, el plazo y un rendimiento anual esperado.",
+      items: [
+        ["Cómo usar la calculadora de ahorro", "Escribe la meta de ahorro, lo que ya tienes guardado, el rendimiento anual esperado y el tiempo disponible. La herramienta estima el aporte mensual necesario, cuánto falta por ahorrar y qué parte podría venir de intereses proyectados."],
+        ["Qué es una meta de ahorro", "Una meta de ahorro es una cantidad concreta de dinero que quieres reunir para un objetivo, como emergencia, viaje, inicial de vivienda o compra importante. Definir monto y fecha transforma una intención en un plan medible, porque muestra cuánto aportar cada mes y si el plazo elegido es realista."],
+        ["Conceptos clave de ahorro", "Calculadora de ahorro, meta financiera, aporte mensual necesario, rendimiento esperado, ahorro actual, plazo y plan de ahorro son términos útiles para organizar objetivos personales sin perder de vista el presupuesto mensual."]
       ]
     }
   },
@@ -468,6 +523,15 @@ const seoCopy = {
         ["Why inflation matters", "Inflation reduces purchasing power over time. This calculator includes estimated real value, which can be more useful for long-term comparison."],
         ["Key investment concepts", "Investment calculator, annual return, inflation, real value, projected value, monthly contributions, financial goal and long-term investing are relevant planning terms."]
       ]
+    },
+    savings: {
+      heading: "Online savings goal calculator",
+      intro: "Calculate the monthly amount needed to reach a savings goal using current savings, available time and an expected annual return.",
+      items: [
+        ["How to use the savings calculator", "Enter the target amount, current savings, expected annual return and years available. The tool estimates the required monthly contribution, the remaining gap and the projected interest that may help you reach the goal."],
+        ["What a savings goal means", "A savings goal is a specific amount you plan to set aside for a future purpose, such as an emergency fund, trip, down payment or large purchase. Adding a deadline turns the goal into a monthly plan that is easier to review and adjust."],
+        ["Key savings concepts", "Savings calculator, financial goal, required monthly contribution, expected return, current savings, time horizon and savings plan are useful terms for organizing personal finance objectives."]
+      ]
     }
   },
   it: {
@@ -505,6 +569,15 @@ const seoCopy = {
         ["Come proiettare un investimento", "Inserisci investimento iniziale, versamento mensile, rendimento annuo, inflazione, orizzonte e obiettivo. Il calcolatore stima valore futuro e progresso."],
         ["Perché considerare l'inflazione", "L'inflazione riduce il potere d'acquisto nel tempo. Per questo il calcolatore mostra anche il valore reale stimato."],
         ["Concetti chiave di investimento", "Calcolatore investimento, rendimento annuo, inflazione, valore reale, valore previsto, versamenti mensili, obiettivo finanziario e investimento a lungo termine sono termini rilevanti."]
+      ]
+    },
+    savings: {
+      heading: "Calcolatore obiettivo di risparmio",
+      intro: "Calcola quanto risparmiare ogni mese per raggiungere un obiettivo usando risparmio attuale, tempo disponibile e rendimento annuo previsto.",
+      items: [
+        ["Come usare il calcolatore di risparmio", "Inserisci obiettivo, risparmio attuale, rendimento annuo previsto e anni disponibili. Lo strumento stima il versamento mensile necessario, quanto manca e gli interessi previsti."],
+        ["Che cos'è un obiettivo di risparmio", "Un obiettivo di risparmio è una somma precisa da accumulare per un progetto futuro, come fondo emergenza, viaggio, anticipo casa o acquisto importante. Con importo e scadenza diventa un piano mensile misurabile."],
+        ["Concetti chiave di risparmio", "Calcolatore risparmio, obiettivo finanziario, versamento mensile necessario, rendimento previsto, risparmio attuale, orizzonte e piano di risparmio sono termini utili."]
       ]
     }
   },
@@ -544,6 +617,15 @@ const seoCopy = {
         ["Pourquoi l'inflation compte", "L'inflation réduit le pouvoir d'achat au fil du temps. Le calculateur affiche donc une valeur réelle estimée pour une comparaison plus utile."],
         ["Concepts clés d'investissement", "Calculateur investissement, rendement annuel, inflation, valeur réelle, valeur projetée, versements mensuels, objectif financier et investissement long terme sont des termes importants."]
       ]
+    },
+    savings: {
+      heading: "Calculateur d'objectif d'épargne",
+      intro: "Calculez le versement mensuel nécessaire pour atteindre un objectif avec votre épargne actuelle, le délai et un rendement annuel prévu.",
+      items: [
+        ["Comment utiliser le calculateur d'épargne", "Indiquez l'objectif, l'épargne actuelle, le rendement annuel prévu et les années disponibles. L'outil estime le versement mensuel, le montant restant et les intérêts projetés."],
+        ["Qu'est-ce qu'un objectif d'épargne", "Un objectif d'épargne est une somme précise à réunir pour un projet futur, comme fonds d'urgence, voyage, apport immobilier ou achat important. Avec une date cible, il devient un plan mensuel concret."],
+        ["Concepts clés d'épargne", "Calculateur d'épargne, objectif financier, versement mensuel nécessaire, rendement prévu, épargne actuelle, horizon et plan d'épargne sont des termes utiles."]
+      ]
     }
   },
   pt: {
@@ -582,6 +664,15 @@ const seoCopy = {
         ["Por que considerar a inflação", "A inflação reduz o poder de compra ao longo do tempo. Por isso a calculadora mostra também o valor real estimado."],
         ["Conceitos-chave de investimento", "Calculadora de investimento, retorno anual, inflação, valor real, valor projetado, aportes mensais, meta financeira e longo prazo são termos relevantes."]
       ]
+    },
+    savings: {
+      heading: "Calculadora de meta de poupança",
+      intro: "Calcule quanto poupar por mês para atingir uma meta usando poupança atual, prazo disponível e retorno anual esperado.",
+      items: [
+        ["Como usar a calculadora de poupança", "Informe a meta, a poupança atual, o retorno anual esperado e os anos disponíveis. A ferramenta estima o aporte mensal necessário, o valor que falta e os juros projetados."],
+        ["O que é uma meta de poupança", "Uma meta de poupança é um valor definido para realizar um objetivo futuro, como reserva de emergência, viagem, entrada de imóvel ou compra importante. Com prazo e valor, ela vira um plano mensal fácil de acompanhar."],
+        ["Conceitos-chave de poupança", "Calculadora de poupança, meta financeira, aporte mensal necessário, retorno esperado, poupança atual, horizonte e plano de poupança são termos úteis."]
+      ]
     }
   },
   de: {
@@ -619,6 +710,15 @@ const seoCopy = {
         ["So projizieren Sie eine Investition", "Geben Sie Startinvestition, monatlichen Beitrag, Jahresrendite, Inflation, Horizont und Ziel ein. Der Rechner schätzt Endwert und Fortschritt."],
         ["Warum Inflation wichtig ist", "Inflation senkt die Kaufkraft im Laufe der Zeit. Deshalb zeigt der Rechner auch einen geschätzten realen Wert."],
         ["Wichtige Anlagebegriffe", "Investitionsrechner, Jahresrendite, Inflation, realer Wert, Prognosewert, monatliche Beiträge, Finanzziel und langfristiges Investieren sind relevante Begriffe."]
+      ]
+    },
+    savings: {
+      heading: "Online-Sparzielrechner",
+      intro: "Berechnen Sie, wie viel Sie monatlich sparen müssen, um ein Ziel mit vorhandenem Guthaben, Zeit und erwarteter Jahresrendite zu erreichen.",
+      items: [
+        ["So verwenden Sie den Sparrechner", "Geben Sie Sparziel, aktuelle Ersparnisse, erwartete Jahresrendite und verfügbare Jahre ein. Das Tool schätzt den nötigen Monatsbeitrag, die verbleibende Lücke und prognostizierte Zinsen."],
+        ["Was ein Sparziel ist", "Ein Sparziel ist ein konkreter Betrag für einen zukünftigen Zweck, etwa Notgroschen, Reise, Immobilienanzahlung oder größere Anschaffung. Mit Betrag und Termin wird daraus ein messbarer Monatsplan."],
+        ["Wichtige Sparbegriffe", "Sparrechner, Finanzziel, nötiger Monatsbeitrag, erwartete Rendite, aktuelle Ersparnisse, Zeithorizont und Sparplan sind nützliche Begriffe."]
       ]
     }
   }
@@ -808,11 +908,50 @@ function calculateInvestment() {
   ]);
 }
 
+function monthlyContributionForGoal(goal, currentSavings, annualRate, years) {
+  const months = Math.max(0, years * 12);
+  const target = Math.max(0, goal);
+  const current = Math.max(0, currentSavings);
+  const monthlyRate = annualRate / 100 / 12;
+
+  if (current >= target) return 0;
+  if (!months) return target - current;
+
+  if (!monthlyRate) {
+    return (target - current) / months;
+  }
+
+  const currentFutureValue = current * ((1 + monthlyRate) ** months);
+  const remainingFutureValue = Math.max(0, target - currentFutureValue);
+  const factor = ((1 + monthlyRate) ** months - 1) / monthlyRate;
+
+  return factor ? remainingFutureValue / factor : 0;
+}
+
+function calculateSavings() {
+  const t = translations[language];
+  const data = readForm("savings");
+  const payment = monthlyContributionForGoal(data.goal, data.current, data.rate, data.years);
+  const projected = futureValue(data.current, payment, data.rate, data.years, "end");
+  const totalContributed = Math.max(0, data.current) + payment * Math.max(0, data.years) * 12;
+  const interest = Math.max(0, projected - totalContributed);
+  const progressRatio = data.goal ? Math.max(0, data.current) / data.goal : 0;
+
+  setMeter(t.metrics.goal, displayPercent(progressRatio), progressRatio, "#7dc66f");
+  showResults(decimalMoney.format(payment), [
+    { label: t.metrics.remaining, value: money.format(Math.max(0, data.goal - data.current)) },
+    { label: t.metrics.savedNow, value: money.format(data.current) },
+    { label: t.metrics.projectedInterest, value: money.format(interest) },
+    { label: t.metrics.horizon, value: `${Math.max(0, data.years)} ${t.years}` }
+  ]);
+}
+
 const calculators = {
   compound: calculateCompound,
   loan: calculateLoan,
   mortgage: calculateMortgage,
-  investment: calculateInvestment
+  investment: calculateInvestment,
+  savings: calculateSavings
 };
 
 function labelFor(selector, text) {
@@ -845,10 +984,12 @@ function applyStaticTranslations() {
   document.querySelector("h1").textContent = t.appName;
   languageLabel.textContent = t.language;
 
-  ["compound", "loan", "mortgage", "investment"].forEach((tool, index) => {
+  toolOrder.forEach((tool, index) => {
     const [title, subtitle] = t.tools[tool];
-    toolButtons[index].querySelector("strong").textContent = title;
-    toolButtons[index].querySelector("small").textContent = subtitle;
+    const button = toolButtons[index];
+    if (!button) return;
+    button.querySelector("strong").textContent = title;
+    button.querySelector("small").textContent = subtitle;
   });
 
   labelFor('#compound-form [name="principal"]', t.fields.principal);
@@ -879,6 +1020,11 @@ function applyStaticTranslations() {
   labelFor('#investment-form [name="inflation"]', t.fields.inflation);
   labelFor('#investment-form [name="years"]', t.fields.horizon);
   labelFor('#investment-form [name="goal"]', t.fields.goal);
+
+  labelFor('#savings-form [name="goal"]', t.fields.savingsGoal);
+  labelFor('#savings-form [name="current"]', t.fields.currentSavings);
+  labelFor('#savings-form [name="rate"]', t.fields.expectedRate);
+  labelFor('#savings-form [name="years"]', t.fields.horizon);
 }
 
 function activateTool(id) {
@@ -933,7 +1079,11 @@ function initialLanguage() {
 }
 
 tabs.forEach((tab) => {
-  tab.addEventListener("click", () => activateTool(tab.dataset.tool));
+  tab.addEventListener("click", (event) => {
+    if (!document.querySelector(`[data-form="${tab.dataset.tool}"]`)) return;
+    event.preventDefault();
+    activateTool(tab.dataset.tool);
+  });
 });
 
 forms.forEach((form) => {

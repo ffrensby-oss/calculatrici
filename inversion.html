@@ -31,12 +31,16 @@
     <section class="workspace" aria-label="Calculadora de inversión">
       <aside class="side-panel">
         <div class="brand-block"><span class="brand-mark" aria-hidden="true">F</span><div><p class="eyebrow">Suite privada</p><h1>Calculadoras financieras</h1></div></div>
-        <nav class="tool-list" aria-label="Seleccionar calculadora">
-          <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
-          <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
-          <a class="tool-tab" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
-          <a class="tool-tab active" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">↗</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
-        </nav>
+        <details class="tools-menu">
+          <summary>Calculadoras</summary>
+          <nav class="tool-list" aria-label="Seleccionar calculadora">
+            <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
+            <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
+            <a class="tool-tab" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
+            <a class="tool-tab active" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">↗</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
+            <a class="tool-tab" data-tool="savings" href="ahorro.html"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
+          </nav>
+        </details>
         <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option></select></label><a class="theme-toggle" href="blog/" aria-label="Abrir blog financiero"><span class="theme-dot" aria-hidden="true"></span><span>Blog</span></a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
       </aside>
       <section class="calculator-panel">

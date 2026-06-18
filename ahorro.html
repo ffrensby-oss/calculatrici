@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-58JX4QPVL0"></script>
@@ -13,44 +13,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0c1210">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Calculadora de préstamos con cuota mensual, intereses, cargos y costo total en varios idiomas.">
+  <meta name="description" content="Calculadora de ahorro para una meta con aporte mensual necesario, ahorro actual, plazo y rendimiento esperado.">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Calculadora de préstamos">
-  <meta property="og:description" content="Calcula la cuota mensual y el costo total de un préstamo.">
+  <meta property="og:title" content="Calculadora de ahorro para una meta">
+  <meta property="og:description" content="Calcula cuánto ahorrar al mes para alcanzar una meta financiera.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
-  <title>Calculadora de préstamos</title>
+  <title>Calculadora de ahorro para una meta</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="dark" data-tool="loan">
+<body class="dark" data-tool="savings">
   <main class="shell">
-    <section class="workspace" aria-label="Calculadora de préstamos">
+    <section class="workspace" aria-label="Calculadora de ahorro para una meta">
       <aside class="side-panel">
         <div class="brand-block"><span class="brand-mark" aria-hidden="true">F</span><div><p class="eyebrow">Suite privada</p><h1>Calculadoras financieras</h1></div></div>
         <details class="tools-menu">
           <summary>Calculadoras</summary>
           <nav class="tool-list" aria-label="Seleccionar calculadora">
             <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
-            <a class="tool-tab active" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
+            <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
             <a class="tool-tab" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
             <a class="tool-tab" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">↗</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
-            <a class="tool-tab" data-tool="savings" href="ahorro.html"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
+            <a class="tool-tab active" data-tool="savings" href="ahorro.html"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
           </nav>
         </details>
         <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option></select></label><a class="theme-toggle" href="blog/" aria-label="Abrir blog financiero"><span class="theme-dot" aria-hidden="true"></span><span>Blog</span></a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
       </aside>
       <section class="calculator-panel">
-        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Cuota mensual</p><h2 id="tool-title">Préstamos</h2></div><div class="summary-chip"><span id="primary-label">Pago estimado</span><strong id="primary-result">$0</strong></div></header>
+        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Plan de ahorro</p><h2 id="tool-title">Ahorro meta</h2></div><div class="summary-chip"><span id="primary-label">Aporte mensual</span><strong id="primary-result">$0</strong></div></header>
         <section class="content-grid">
-          <form class="form-card active" id="loan-form" data-form="loan">
-            <label>Monto del préstamo<input type="number" inputmode="decimal" name="amount" value="18000" min="0" step="100"></label>
-            <label>Tasa anual (%)<input type="number" inputmode="decimal" name="rate" value="10.5" min="0" step="0.1"></label>
-            <label>Plazo (meses)<input type="number" inputmode="numeric" name="months" value="60" min="1" step="1"></label>
-            <label>Cargo inicial<input type="number" inputmode="decimal" name="fee" value="250" min="0" step="25"></label>
+          <form class="form-card active" id="savings-form" data-form="savings">
+            <label>Meta de ahorro<input type="number" inputmode="decimal" name="goal" value="25000" min="0" step="100"></label>
+            <label>Ahorro actual<input type="number" inputmode="decimal" name="current" value="3500" min="0" step="100"></label>
+            <label>Rendimiento anual esperado (%)<input type="number" inputmode="decimal" name="rate" value="4" min="0" step="0.1"></label>
+            <label>Horizonte (años)<input type="number" inputmode="numeric" name="years" value="4" min="1" step="1"></label>
           </form>
           <section class="result-card" aria-live="polite"><div class="meter-wrap"><div class="meter" aria-label="Indicador circular de resultado"><div class="meter-core"><span id="meter-label">Progreso</span><strong id="meter-value">0%</strong></div></div></div><div class="result-list" id="result-list"></div></section>
         </section>
@@ -61,6 +61,3 @@
   <script src="app.js"></script>
 </body>
 </html>
-
-
-

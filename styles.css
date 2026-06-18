@@ -146,9 +146,50 @@ h2 {
   line-height: 0.98;
 }
 
+.tools-menu {
+  display: grid;
+  gap: 10px;
+}
+
+.tools-menu summary {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  color: var(--ink);
+  background: var(--hover);
+  cursor: pointer;
+  font-weight: 800;
+  list-style: none;
+}
+
+.tools-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.tools-menu summary::after {
+  content: "+";
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--active);
+}
+
+.tools-menu[open] summary::after {
+  content: "-";
+}
+
 .tool-list {
   display: grid;
   gap: 10px;
+  margin-top: 10px;
 }
 
 .tool-tab {
@@ -190,6 +231,11 @@ h2 {
 
 .tool-tab:nth-child(4) .tab-icon {
   background: var(--gold);
+}
+
+.tool-tab:nth-child(5) .tab-icon {
+  background: #7dc66f;
+  color: #102211;
 }
 
 .tool-tab strong,
