@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-58JX4QPVL0"></script>
@@ -13,13 +13,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#eef3ec">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Calculadora de inversión con meta, rendimiento anual, inflación, valor nominal y valor real estimado.">
+  <meta name="description" content="Calculadora de inversiÃ³n con meta, rendimiento anual, inflaciÃ³n, valor nominal y valor real estimado.">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Calculadora de inversión">
-  <meta property="og:description" content="Proyecta una inversión con aportes mensuales, inflación y rendimiento real.">
+  <meta property="og:title" content="Calculadora de inversiÃ³n">
+  <meta property="og:description" content="Proyecta una inversiÃ³n con aportes mensuales, inflaciÃ³n y rendimiento real.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
-  <title>Calculadora de inversión</title>
+  <title>Calculadora de inversiÃ³n</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,34 +28,36 @@
 </head>
 <body data-tool="investment">
   <main class="shell">
-    <section class="workspace" aria-label="Calculadora de inversión">
+    <section class="workspace" aria-label="Calculadora de inversiÃ³n">
       <aside class="side-panel">
         <div class="brand-block"><span class="brand-mark" aria-hidden="true">F</span><div><p class="eyebrow">Suite privada</p><h1>Calculadoras financieras</h1></div></div>
         <nav class="tool-list" aria-label="Seleccionar calculadora">
-          <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
-          <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
+          <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>InterÃ©s compuesto</strong><small>Crecimiento por aportes</small></span></a>
+          <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>PrÃ©stamos</strong><small>Cuota y costo total</small></span></a>
           <a class="tool-tab" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
-          <a class="tool-tab active" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">↗</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
+          <a class="tool-tab active" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">â†—</span><span><strong>InversiÃ³n</strong><small>Meta y rendimiento real</small></span></a>
         </nav>
-        <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option></select></label><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
+        <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">EspaÃ±ol</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">FranÃ§ais</option><option value="pt">PortuguÃªs</option><option value="de">Deutsch</option></select></label><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
       </aside>
       <section class="calculator-panel">
-        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Meta financiera</p><h2 id="tool-title">Inversión</h2></div><div class="summary-chip"><span id="primary-label">Valor proyectado</span><strong id="primary-result">$0</strong></div></header>
+        <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Meta financiera</p><h2 id="tool-title">InversiÃ³n</h2></div><div class="summary-chip"><span id="primary-label">Valor proyectado</span><strong id="primary-result">$0</strong></div></header>
         <section class="content-grid">
           <form class="form-card active" id="investment-form" data-form="investment">
-            <label>Inversión inicial<input type="number" inputmode="decimal" name="principal" value="15000" min="0" step="100"></label>
+            <label>InversiÃ³n inicial<input type="number" inputmode="decimal" name="principal" value="15000" min="0" step="100"></label>
             <label>Aporte mensual<input type="number" inputmode="decimal" name="monthly" value="400" min="0" step="25"></label>
             <label>Rendimiento anual (%)<input type="number" inputmode="decimal" name="returnRate" value="9" min="-50" step="0.1"></label>
-            <label>Inflación anual (%)<input type="number" inputmode="decimal" name="inflation" value="3" min="0" step="0.1"></label>
-            <label>Horizonte (años)<input type="number" inputmode="numeric" name="years" value="20" min="1" step="1"></label>
+            <label>InflaciÃ³n anual (%)<input type="number" inputmode="decimal" name="inflation" value="3" min="0" step="0.1"></label>
+            <label>Horizonte (aÃ±os)<input type="number" inputmode="numeric" name="years" value="20" min="1" step="1"></label>
             <label>Meta<input type="number" inputmode="decimal" name="goal" value="250000" min="0" step="1000"></label>
           </form>
           <section class="result-card" aria-live="polite"><div class="meter-wrap"><div class="meter" aria-label="Indicador circular de resultado"><div class="meter-core"><span id="meter-label">Progreso</span><strong id="meter-value">0%</strong></div></div></div><div class="result-list" id="result-list"></div></section>
         </section>
-        <section class="seo-accordion" id="seo-accordion" aria-label="Información de la calculadora"></section>
+        <section class="seo-accordion" id="seo-accordion" aria-label="InformaciÃ³n de la calculadora"></section>
       </section>
     </section>
   </main>
   <script src="app.js"></script>
 </body>
 </html>
+
+
