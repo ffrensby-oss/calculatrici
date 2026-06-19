@@ -1102,5 +1102,3 @@ language = initialLanguage();
 setLanguage(language);
 setTheme(initialTheme());
 
-
-
