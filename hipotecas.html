@@ -11,16 +11,23 @@
     gtag('config', 'G-58JX4QPVL0');
   </script>
   <meta charset="UTF-8">
-  <link rel="canonical" href="https://calculatrici.ffrensby.workers.dev/hipotecas.html">
+  <link rel="canonical" href="https://calculatrici.ffrensby.workers.dev/hipotecas">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0c1210">
   <meta name="color-scheme" content="light dark">
-  <meta name="description" content="Calculadora de hipotecas con pago mensual, capital e inter�s, impuestos, seguro e inicial.">
+  <meta name="description" content="Calculadora de hipotecas con pago mensual, capital e interés, impuestos, seguro e inicial.">
   <meta name="robots" content="index, follow">
   <meta property="og:title" content="Calculadora de hipotecas">
   <meta property="og:description" content="Calcula el pago mensual completo de una hipoteca.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
+  <meta property="og:url" content="https://calculatrici.ffrensby.workers.dev/hipotecas">
+  <meta property="og:site_name" content="Calculadoras financieras">
+  <meta property="og:image" content="https://calculatrici.ffrensby.workers.dev/blog/como-usar-calculadoras-financieras/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadora de hipotecas">
+  <meta name="twitter:description" content="Calcula el pago mensual completo de una hipoteca.">
+  <meta name="twitter:image" content="https://calculatrici.ffrensby.workers.dev/blog/como-usar-calculadoras-financieras/og-image.svg">
   <title>Calculadora de hipotecas</title>
   <link rel="manifest" href="manifest.json">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,14 +43,15 @@
         <details class="tools-menu">
           <summary>Calculadoras</summary>
           <nav class="tool-list" aria-label="Seleccionar calculadora">
-            <a class="tool-tab" data-tool="compound" href="interes-compuesto.html"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Inter�s compuesto</strong><small>Crecimiento por aportes</small></span></a>
-            <a class="tool-tab" data-tool="loan" href="prestamos.html"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Pr�stamos</strong><small>Cuota y costo total</small></span></a>
-            <a class="tool-tab active" data-tool="mortgage" href="hipotecas.html"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
-            <a class="tool-tab" data-tool="investment" href="inversion.html"><span class="tab-icon" aria-hidden="true">?</span><span><strong>Inversi�n</strong><small>Meta y rendimiento real</small></span></a>
-            <a class="tool-tab" data-tool="savings" href="ahorro.html"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
+            <a class="tool-tab" data-tool="compound" href="interes-compuesto"><span class="tab-icon" aria-hidden="true">%</span><span><strong>Interés compuesto</strong><small>Crecimiento por aportes</small></span></a>
+            <a class="tool-tab" data-tool="loan" href="prestamos"><span class="tab-icon" aria-hidden="true">$</span><span><strong>Préstamos</strong><small>Cuota y costo total</small></span></a>
+            <a class="tool-tab active" data-tool="mortgage" href="hipotecas"><span class="tab-icon" aria-hidden="true">H</span><span><strong>Hipotecas</strong><small>Pago, seguros e impuestos</small></span></a>
+            <a class="tool-tab" data-tool="investment" href="inversion"><span class="tab-icon" aria-hidden="true">↗</span><span><strong>Inversión</strong><small>Meta y rendimiento real</small></span></a>
+            <a class="tool-tab" data-tool="savings" href="ahorro"><span class="tab-icon" aria-hidden="true">M</span><span><strong>Ahorro meta</strong><small>Aporte necesario</small></span></a>
+            <a class="tool-tab" data-tool="currency" href="divisas"><span class="tab-icon" aria-hidden="true">⇄</span><span><strong>Divisas</strong><small>Euro/dólar a peso cubano</small></span></a>
           </nav>
         </details>
-        <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Espa�ol</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Fran�ais</option><option value="pt">Portugu�s</option><option value="de">Deutsch</option></select></label><a class="theme-toggle" href="blog/" aria-label="Abrir blog financiero"><span class="theme-dot" aria-hidden="true"></span><span>Blog</span></a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
+        <div class="side-actions"><label class="language-picker"><span id="language-label">Idioma</span><select id="language-select" aria-label="Seleccionar idioma"><option value="es">Español</option><option value="en">English</option><option value="it">Italiano</option><option value="fr">Français</option><option value="pt">Português</option><option value="de">Deutsch</option></select></label><a class="theme-toggle" href="blog/" aria-label="Abrir blog financiero"><span class="theme-dot" aria-hidden="true"></span><span>Blog</span></a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro"><span class="theme-dot" aria-hidden="true"></span><span id="theme-label">Modo oscuro</span></button></div>
       </aside>
       <section class="calculator-panel">
         <header class="panel-header"><div><p class="eyebrow" id="tool-kicker">Pago completo</p><h2 id="tool-title">Hipotecas</h2></div><div class="summary-chip"><span id="primary-label">Pago mensual</span><strong id="primary-result">$0</strong></div></header>
@@ -52,13 +60,13 @@
             <label>Precio de la vivienda<input type="number" inputmode="decimal" name="price" value="380000" min="0" step="1000"></label>
             <label>Inicial / enganche<input type="number" inputmode="decimal" name="down" value="76000" min="0" step="1000"></label>
             <label>Tasa anual (%)<input type="number" inputmode="decimal" name="rate" value="6.4" min="0" step="0.1"></label>
-            <label>Plazo (a�os)<input type="number" inputmode="numeric" name="years" value="30" min="1" step="1"></label>
+            <label>Plazo (años)<input type="number" inputmode="numeric" name="years" value="30" min="1" step="1"></label>
             <label>Impuestos anuales<input type="number" inputmode="decimal" name="taxes" value="4200" min="0" step="100"></label>
             <label>Seguro anual<input type="number" inputmode="decimal" name="insurance" value="1500" min="0" step="100"></label>
           </form>
           <section class="result-card" aria-live="polite"><div class="meter-wrap"><div class="meter" aria-label="Indicador circular de resultado"><div class="meter-core"><span id="meter-label">Progreso</span><strong id="meter-value">0%</strong></div></div></div><div class="result-list" id="result-list"></div></section>
         </section>
-        <section class="seo-accordion" id="seo-accordion" aria-label="Informaci�n de la calculadora"></section>
+        <section class="seo-accordion" id="seo-accordion" aria-label="Información de la calculadora"></section>
       </section>
     </section>
   </main>

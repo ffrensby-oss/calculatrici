@@ -1,4 +1,4 @@
-﻿const tabs = document.querySelectorAll(".tool-tab");
+const tabs = document.querySelectorAll(".tool-tab");
 const forms = document.querySelectorAll(".form-card");
 const toolTitle = document.querySelector("#tool-title");
 const toolKicker = document.querySelector("#tool-kicker");
@@ -17,7 +17,7 @@ const descriptionMeta = document.querySelector('meta[name="description"]');
 const ogTitle = document.querySelector('meta[property="og:title"]');
 const ogDescription = document.querySelector('meta[property="og:description"]');
 const ogLocale = document.querySelector('meta[property="og:locale"]');
-const toolOrder = ["compound", "loan", "mortgage", "investment", "savings"];
+const toolOrder = ["compound", "loan", "mortgage", "investment", "savings", "currency"];
 
 const translations = {
   es: {
@@ -38,7 +38,8 @@ const translations = {
       loan: ["Préstamos", "Cuota y costo total", "Cuota mensual", "Pago estimado"],
       mortgage: ["Hipotecas", "Pago, seguros e impuestos", "Pago completo", "Pago mensual"],
       investment: ["Inversión", "Meta y rendimiento real", "Meta financiera", "Valor proyectado"],
-      savings: ["Ahorro meta", "Aporte necesario", "Plan de ahorro", "Aporte mensual"]
+      savings: ["Ahorro meta", "Aporte necesario", "Plan de ahorro", "Aporte mensual"],
+      currency: ["Divisas", "Euro/dólar a peso cubano", "Conversor de divisas", "CUP"]
     },
     fields: {
       principal: "Capital inicial",
@@ -107,7 +108,8 @@ const translations = {
       loan: ["Loans", "Payment and total cost", "Monthly payment", "Estimated payment"],
       mortgage: ["Mortgages", "Payment, taxes and insurance", "Full payment", "Monthly payment"],
       investment: ["Investment", "Goal and real return", "Financial goal", "Projected value"],
-      savings: ["Savings goal", "Required contribution", "Savings plan", "Monthly contribution"]
+      savings: ["Savings goal", "Required contribution", "Savings plan", "Monthly contribution"],
+      currency: ["Currency", "EUR/USD to Cuban peso", "Currency converter", "CUP"]
     },
     fields: {
       principal: "Initial capital",
@@ -176,7 +178,8 @@ const translations = {
       loan: ["Prestiti", "Rata e costo totale", "Rata mensile", "Pagamento stimato"],
       mortgage: ["Mutui", "Rata, tasse e assicurazione", "Pagamento completo", "Rata mensile"],
       investment: ["Investimento", "Obiettivo e rendimento reale", "Obiettivo finanziario", "Valore previsto"],
-      savings: ["Obiettivo risparmio", "Versamento necessario", "Piano di risparmio", "Versamento mensile"]
+      savings: ["Obiettivo risparmio", "Versamento necessario", "Piano di risparmio", "Versamento mensile"],
+      currency: ["Valute", "Euro/dollaro a peso cubano", "Convertitore di valuta", "CUP"]
     },
     fields: {
       principal: "Capitale iniziale",
@@ -245,7 +248,8 @@ const translations = {
       loan: ["Prêts", "Mensualité et coÃ»t total", "Mensualité", "Paiement estimé"],
       mortgage: ["Hypothèques", "Paiement, taxes et assurance", "Paiement complet", "Paiement mensuel"],
       investment: ["Investissement", "Objectif et rendement réel", "Objectif financier", "Valeur projetée"],
-      savings: ["Objectif épargne", "Versement nécessaire", "Plan d'épargne", "Versement mensuel"]
+      savings: ["Objectif épargne", "Versement nécessaire", "Plan d'épargne", "Versement mensuel"],
+      currency: ["Devises", "Euro/dollar vers peso cubain", "Convertisseur de devises", "CUP"]
     },
     fields: {
       principal: "Capital initial",
@@ -314,7 +318,8 @@ const translations = {
       loan: ["Empréstimos", "Parcela e custo total", "Parcela mensal", "Pagamento estimado"],
       mortgage: ["Hipotecas", "Pagamento, impostos e seguro", "Pagamento completo", "Pagamento mensal"],
       investment: ["Investimento", "Meta e retorno real", "Meta financeira", "Valor projetado"],
-      savings: ["Meta de poupança", "Aporte necessário", "Plano de poupança", "Aporte mensal"]
+      savings: ["Meta de poupança", "Aporte necessário", "Plano de poupança", "Aporte mensal"],
+      currency: ["Moedas", "Euro/dólar para peso cubano", "Conversor de moedas", "CUP"]
     },
     fields: {
       principal: "Capital inicial",
@@ -383,7 +388,8 @@ const translations = {
       loan: ["Darlehen", "Rate und Gesamtkosten", "Monatsrate", "Geschätzte Rate"],
       mortgage: ["Hypotheken", "Rate, Steuern und Versicherung", "Gesamtzahlung", "Monatszahlung"],
       investment: ["Investition", "Ziel und reale Rendite", "Finanzielles Ziel", "Prognosewert"],
-      savings: ["Sparziel", "Nötiger Beitrag", "Sparplan", "Monatsbeitrag"]
+      savings: ["Sparziel", "Nötiger Beitrag", "Sparplan", "Monatsbeitrag"],
+      currency: ["Währungen", "Euro/Dollar in kubanischen Peso", "Währungsrechner", "CUP"]
     },
     fields: {
       principal: "Startkapital",
