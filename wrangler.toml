@@ -1,0 +1,6 @@
+name = "calculatrici"
+main = "index.js"
+compatibility_date = "2026-06-19"
+
+[assets]
+directory = "./"
