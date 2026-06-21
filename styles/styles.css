@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   color-scheme: light;
   --ink: #17211d;
   --muted: #66746e;
@@ -438,11 +438,12 @@ select:focus {
   width: 100%;
   margin-top: 8px;
   color: var(--ink);
-  font-size: clamp(2rem, 11vw, 4rem);
+  font-size: clamp(1.5rem, 8vw, 2.6rem);
   font-variant-numeric: tabular-nums;
   line-height: 0.95;
   text-align: center;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .result-list {
