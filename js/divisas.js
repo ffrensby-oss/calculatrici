@@ -29,7 +29,7 @@
   */
   var ELTOQUE_API_ENABLED = true;
   var ELTOQUE_API_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4MjMxOTk4OCwianRpIjoiMzMyOTZmYzMtYTJmZi00MGMwLWE1YWYtZWViYzhlNjYwYmFmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjZhMzUwYTI3NmNhMjY5OGE5NmM2YzMzOSIsIm5iZiI6MTc4MjMxOTk4OH0.gwPiELjSHP4kWIU1ruLp4NcKrFRskFwOegtikTpzfyU"; // <-- pega aquí tu token cuando lo tengas
-  var ELTOQUE_API_URL = "https://tasas.eltoque.com/v1/trmi/now";
+  var ELTOQUE_API_URL = "https://tasas.eltoque.com/v1/trmi";
 
   function fetchLiveRateFromElToque() {
     if (!ELTOQUE_API_ENABLED || !ELTOQUE_API_TOKEN) return;
