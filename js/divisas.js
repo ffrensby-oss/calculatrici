@@ -16,41 +16,17 @@
   };
 
   /* Tasas oficiales (CADECA, venta) usadas solo para el indicador de brecha cambiaria */
-  var OFFICIAL_RATES = { USD: 566.10, EUR: 656.68 };
+  const data = await fetch(
+    "https://raw.githubusercontent.com/ffrensby-oss/prices/main/response.json"
+  ).then(res => res.json());
+
+  var OFFICIAL_RATES = { USD: data.USD, EUR: data.ECR };
 
   var STORAGE_KEY = "fc_divisas_rates_v1";
   var THEME_KEY = "fc_theme";
   var LANG_KEY = "fc_lang";
 
-  /* =========================================================
-     2) API OFICIAL DE EL TOQUE (opcional)
-     =========================================================
-  
-  */
-  var ELTOQUE_API_ENABLED = true;
-  var ELTOQUE_API_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4MjMxOTk4OCwianRpIjoiMzMyOTZmYzMtYTJmZi00MGMwLWE1YWYtZWViYzhlNjYwYmFmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjZhMzUwYTI3NmNhMjY5OGE5NmM2YzMzOSIsIm5iZiI6MTc4MjMxOTk4OH0.gwPiELjSHP4kWIU1ruLp4NcKrFRskFwOegtikTpzfyU"; // <-- pega aquí tu token cuando lo tengas
-  var ELTOQUE_API_URL = "https://tasas.eltoque.com/v1/trmi";
 
-  function fetchLiveRateFromElToque() {
-    if (!ELTOQUE_API_ENABLED || !ELTOQUE_API_TOKEN) return;
-    fetch(ELTOQUE_API_URL, {
-      method: "GET",
-      headers: { "Authorization": "Bearer " + ELTOQUE_API_TOKEN }
-    })
-      .then(function (r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
-      .then(function (data) {
-        // Ajusta esta extracción a la forma real de la respuesta una vez la confirmes.
-        var usd = data && (data.USD || (data.tasas && data.tasas.USD));
-        var eur = data && (data.EUR || (data.tasas && data.tasas.EUR));
-        if (usd && eur) {
-          rates = { USD: Number(usd), EUR: Number(eur), updatedAt: new Date().toISOString(), source: "eltoque-api" };
-          refreshAll();
-        }
-      })
-      .catch(function (err) {
-        console.warn("No se pudo obtener la tasa en vivo de El Toque, se mantiene la tasa de referencia.", err);
-      });
-  }
 
   /* =========================================================
      3) Estado y utilidades
