@@ -1,51 +1,41 @@
-(function () {
+(async function () {
   "use strict";
 
   /* =========================================================
-     1) TASAS — valores de referencia y fuente de datos
+     1) TASAS — Valores predeterminados (Fallback)
      =========================================================
-     DEFAULT_RATES: último dato verificado en eltoque.com/tasas-de-cambio-cuba.
-     Edita estos dos números cuando quieras refrescar el valor "de fábrica"
-     que ve cualquier visitante que no haya guardado una tasa manual.
+     Si la API falla, se usarán estos valores para evitar que la app se rompa.
   */
   var DEFAULT_RATES = {
-    USD: 685.00,
-    EUR: 780.00,
-    updatedAt: "2026-06-18T14:34:00-04:00",
+    USD: 680.00,
+    EUR: 790.00,
+    updatedAt: new Date().toISOString(),
     source: "eltoque"
   };
 
-  /* Tasas oficiales (CADECA, venta) usadas solo para el indicador de brecha cambiaria */
-  const data = await fetch(
-    "https://raw.githubusercontent.com/ffrensby-oss/prices/main/response.json"
-  ).then(res => res.json());
+  var rates = Object.assign({}, DEFAULT_RATES);
+  var OFFICIAL_RATES = { USD: 120.00, EUR: 130.00 }; // Tasa oficial fija para la brecha
 
-  var OFFICIAL_RATES = { USD: data.USD, EUR: data.ECR };
-
-  var STORAGE_KEY = "fc_divisas_rates_v1";
   var THEME_KEY = "fc_theme";
   var LANG_KEY = "fc_lang";
-
-
-
-  /* =========================================================
-     3) Estado y utilidades
-     ========================================================= */
-  var rates = loadRates();
   var activeCurrency = "USD";
 
-  function loadRates() {
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        var saved = JSON.parse(raw);
-        if (saved && saved.USD && saved.EUR) return saved;
-      }
-    } catch (e) { }
-    return Object.assign({}, DEFAULT_RATES);
-  }
-  function saveRatesToStorage() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(rates)); } catch (e) { }
+  /* =========================================================
+     2) OBTENCIÓN AUTOMÁTICA DE DATOS (API GitHub)
+     ========================================================= */
+  try {
+    const res = await fetch("https://raw.githubusercontent.com/ffrensby-oss/prices/main/response.json");
+    if (res.ok) {
+      const data = await res.json();
+      
+      // Asignamos los valores directamente del JSON de GitHub
+      rates.USD = data.USD || DEFAULT_RATES.USD;
+      rates.EUR = data.ECU || DEFAULT_RATES.EUR; // Nota: Tu JSON usa "ECU" para el Euro
+      rates.updatedAt = new Date().toISOString();
+      rates.source = "eltoque";
+    }
+  } catch (e) {
+    console.error("No se pudieron cargar las tasas en vivo, usando valores de respaldo:", e);
   }
 
   var LOCALE_MAP = { es: "es-ES", en: "en-US", it: "it-IT", fr: "fr-FR", pt: "pt-PT", de: "de-DE" };
@@ -59,7 +49,7 @@
   }
 
   /* =========================================================
-     4) Conversión
+     3) Conversión
      ========================================================= */
   var elForeign = document.getElementById("amountForeign");
   var elCUP = document.getElementById("amountCUP");
@@ -70,33 +60,35 @@
   function currentRate() { return rates[activeCurrency]; }
 
   function recomputeFromForeign() {
+    if (!elForeign || !elCUP) return;
     var v = parseFloat(elForeign.value);
     if (isNaN(v)) v = 0;
     elCUP.value = (v * currentRate()).toFixed(2);
   }
   function recomputeFromCUP() {
+    if (!elForeign || !elCUP) return;
     var v = parseFloat(elCUP.value);
     if (isNaN(v)) v = 0;
     elForeign.value = (v / currentRate()).toFixed(2);
   }
 
-  elForeign.addEventListener("input", recomputeFromForeign);
-  elCUP.addEventListener("input", recomputeFromCUP);
+  if (elForeign) elForeign.addEventListener("input", recomputeFromForeign);
+  if (elCUP) elCUP.addEventListener("input", recomputeFromCUP);
 
   function setActiveCurrency(code) {
     activeCurrency = code;
-    elCurForeign.textContent = code;
-    tabUSD.setAttribute("aria-selected", code === "USD" ? "true" : "false");
-    tabEUR.setAttribute("aria-selected", code === "EUR" ? "true" : "false");
+    if (elCurForeign) elCurForeign.textContent = code;
+    if (tabUSD) tabUSD.setAttribute("aria-selected", code === "USD" ? "true" : "false");
+    if (tabEUR) tabEUR.setAttribute("aria-selected", code === "EUR" ? "true" : "false");
     recomputeFromForeign();
     updateTicker();
     updateGapWidget();
   }
-  tabUSD.addEventListener("click", function () { setActiveCurrency("USD"); });
-  tabEUR.addEventListener("click", function () { setActiveCurrency("EUR"); });
+  if (tabUSD) tabUSD.addEventListener("click", function () { setActiveCurrency("USD"); });
+  if (tabEUR) tabEUR.addEventListener("click", function () { setActiveCurrency("EUR"); });
 
   /* =========================================================
-     5) Ticker de tasa
+     4) Ticker de tasa
      ========================================================= */
   var rateValueEl = document.getElementById("rateValue");
   var rateBadgeEl = document.getElementById("rateBadge");
@@ -104,52 +96,16 @@
 
   function updateTicker() {
     var lang = currentLang;
-    rateValueEl.textContent = "1 " + activeCurrency + " = " + fmtNumber(currentRate(), lang) + " CUP";
-    var isManual = rates.source === "manual";
-    rateBadgeEl.className = "badge" + (isManual ? " manual" : "");
-    rateBadgeEl.innerHTML = '<span>' + (isManual ? I18N[lang].manual_badge : (I18N[lang].source_prefix + ': ' + I18N[lang].source_name)) + '</span>';
-    updatedAtTextEl.textContent = "· " + I18N[lang].updated_prefix + ": " + fmtDate(rates.updatedAt, lang);
+    if (rateValueEl) rateValueEl.textContent = "1 " + activeCurrency + " = " + fmtNumber(currentRate(), lang) + " CUP";
+    if (rateBadgeEl) {
+      rateBadgeEl.className = "badge";
+      rateBadgeEl.innerHTML = '<span>' + I18N[lang].source_prefix + ': ' + I18N[lang].source_name + '</span>';
+    }
+    if (updatedAtTextEl) updatedAtTextEl.textContent = "· " + I18N[lang].updated_prefix + ": " + fmtDate(rates.updatedAt, lang);
   }
 
   /* =========================================================
-     6) Panel de actualización manual
-     ========================================================= */
-  var panelToggle = document.getElementById("panelToggle");
-  var updatePanel = document.getElementById("updatePanel");
-  var inputUSD = document.getElementById("inputUSD");
-  var inputEUR = document.getElementById("inputEUR");
-  var saveBtn = document.getElementById("saveRates");
-  var resetBtn = document.getElementById("resetRates");
-  var savedNote = document.getElementById("savedNote");
-
-  panelToggle.addEventListener("click", function () {
-    var open = updatePanel.classList.toggle("open");
-    panelToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    if (open) { inputUSD.value = rates.USD; inputEUR.value = rates.EUR; }
-  });
-
-  saveBtn.addEventListener("click", function () {
-    var usd = parseFloat(inputUSD.value);
-    var eur = parseFloat(inputEUR.value);
-    if (usd > 0 && eur > 0) {
-      rates = { USD: usd, EUR: eur, updatedAt: new Date().toISOString(), source: "manual" };
-      saveRatesToStorage();
-      refreshAll();
-      savedNote.classList.add("show");
-      setTimeout(function () { savedNote.classList.remove("show"); }, 2500);
-    }
-  });
-
-  resetBtn.addEventListener("click", function () {
-    rates = Object.assign({}, DEFAULT_RATES);
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { }
-    inputUSD.value = rates.USD;
-    inputEUR.value = rates.EUR;
-    refreshAll();
-  });
-
-  /* =========================================================
-     7) Brecha cambiaria
+     5) Brecha cambiaria
      ========================================================= */
   var gapOfficialBar = document.getElementById("gapOfficialBar");
   var gapInformalBar = document.getElementById("gapInformalBar");
@@ -162,16 +118,16 @@
     var official = OFFICIAL_RATES[activeCurrency];
     var informal = currentRate();
     var max = Math.max(official, informal);
-    gapOfficialBar.style.width = (official / max * 100).toFixed(1) + "%";
-    gapInformalBar.style.width = (informal / max * 100).toFixed(1) + "%";
-    gapOfficialValue.textContent = fmtNumber(official, lang);
-    gapInformalValue.textContent = fmtNumber(informal, lang);
+    if (gapOfficialBar) gapOfficialBar.style.width = (official / max * 100).toFixed(1) + "%";
+    if (gapInformalBar) gapInformalBar.style.width = (informal / max * 100).toFixed(1) + "%";
+    if (gapOfficialValue) gapOfficialValue.textContent = fmtNumber(official, lang);
+    if (gapInformalValue) gapInformalValue.textContent = fmtNumber(informal, lang);
     var pct = Math.round(((informal - official) / official) * 100);
-    gapStat.innerHTML = I18N[lang].gap_stat_template.replace("{percent}", "<strong>" + pct + "</strong>");
+    if (gapStat) gapStat.innerHTML = I18N[lang].gap_stat_template.replace("{percent}", "<strong>" + pct + "</strong>");
   }
 
   /* =========================================================
-     8) Tema oscuro / claro
+     6) Tema oscuro / claro
      ========================================================= */
   var themeToggle = document.getElementById("themeToggle");
   var themeIcon = document.getElementById("themeIcon");
@@ -179,29 +135,34 @@
 
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
-    themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-    themeIcon.textContent = theme === "dark" ? "☀" : "☾";
-    themeLabel.setAttribute("data-i18n", theme === "dark" ? "theme_label_light" : "theme_label_dark");
-    themeLabel.textContent = theme === "dark" ? I18N[currentLang].theme_label_light : I18N[currentLang].theme_label_dark;
+    if (themeToggle) themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+    if (themeIcon) themeIcon.textContent = theme === "dark" ? "☀" : "☾";
+    if (themeLabel) {
+      themeLabel.setAttribute("data-i18n", theme === "dark" ? "theme_label_light" : "theme_label_dark");
+      themeLabel.textContent = I18N[currentLang][theme === "dark" ? "theme_label_light" : "theme_label_dark"];
+    }
     try { localStorage.setItem(THEME_KEY, theme); } catch (e) { }
   }
-  themeToggle.addEventListener("click", function () {
-    var current = document.documentElement.getAttribute("data-theme");
-    applyTheme(current === "dark" ? "light" : "dark");
-  });
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var current = document.documentElement.getAttribute("data-theme");
+      applyTheme(current === "dark" ? "light" : "dark");
+    });
+  }
 
   /* =========================================================
-     9) Internacionalización (i18n)
+     7) Internacionalización (i18n)
      ========================================================= */
   var I18N = {
-    en: { eyebrow_suite: "Private suite", nav_title: "Financial calculators", nav_calculators_label: "Calculators", card_compound_title: "Compound interest", card_compound_sub: "Growth from contributions", card_loans_title: "Loans", card_loans_sub: "Payment and total cost", card_mortgage_title: "Mortgages", card_mortgage_sub: "Payment, insurance and taxes", card_invest_title: "Investment", card_invest_sub: "Goal and real return", card_savings_title: "Savings goal", card_savings_sub: "Required contribution", card_currency_title: "Currency", card_currency_sub: "EUR/USD to Cuban peso", lang_label: "Language", blog_label: "Blog", theme_label_dark: "Dark mode", theme_label_light: "Light mode", page_eyebrow: "Currency converter", page_title: "Euro and US dollar to Cuban peso (CUP)", page_subtitle: "Instantly calculate how many Cuban pesos (CUP) you get for your euros or dollars, using the informal rate published by El Toque (TRMI) as a reference.", tab_usd: "Dollar · USD", tab_eur: "Euro · EUR", label_you_have: "You have", label_you_receive: "You get", rate_caption: "Reference informal rate", updated_prefix: "Updated", source_prefix: "Source", source_name: "El Toque (TRMI)", manual_badge: "manually updated", update_toggle: "Update rates", update_intro: "If you know today's rate, enter it here. It will be saved in this browser.", input_usd_label: "1 USD equals (CUP)", input_eur_label: "1 EUR equals (CUP)", save_btn: "Save rates", reset_btn: "Reset to reference values", saved_note: "Rates saved.", gap_title: "Exchange gap", gap_official_label: "Official rate (CADECA)", gap_informal_label: "Informal rate (El Toque)", gap_stat_template: "The informal market pays {percent}% more than the official rate", faq_section_title: "Frequently asked questions and guide", footer_disclaimer: "Reference values only; rates change frequently and this tool does not execute or broker currency exchanges.", footer_link_text: "See current rates on El Toque", acc1_title: "What is El Toque's informal rate (TRMI)?", acc1_body: "The Informal Market Representative Rate (TRMI) is calculated by the independent outlet El Toque from the median of buy and sell prices for foreign currency posted in Telegram and WhatsApp groups and classifieds sites in Cuba. It's the most widely used reference for Cubans on and off the island to know the real exchange value of the dollar and euro, since the official market doesn't reflect it.", acc2_title: "Official rate vs. informal rate: what's the difference?", acc2_body: "The official rate is set by the Central Bank of Cuba and state exchange houses (CADECA) for banking and trade operations. The informal rate is what people actually pay each other for currency. Because hard currency is scarce in Cuba's banking system, the informal rate is usually several times higher than the official one, as shown in this page's exchange gap indicator.", acc3_title: "How do I convert euros or dollars to Cuban pesos here?", acc3_body: "Pick a currency (dollar or euro), type an amount in the 'You have' field, and the Cuban peso equivalent appears instantly in 'You get'. You can also type an amount in CUP to see how many euros or dollars it represents. If you know today's rate, open 'Update rates' and the calculation will adjust.", acc4_title: "How many Cuban pesos is 1 US dollar today?", acc4_body: "The value can change several times a day depending on informal-market supply and demand. This page shows the latest available reference rate along with its update date; for the exact current figure, use the 'Update rates' button with the value you see on El Toque or the most recent one you know.", acc5_title: "How many Cuban pesos is 1 euro today?", acc5_body: "The euro usually trades above the dollar on Cuba's informal market because there's less supply of it. As with the dollar, the figure shown here is a reference — confirm the day's rate on El Toque if you need precision for a specific transaction.", acc6_title: "Does the rate change every day? How often should I update it?", acc6_body: "Yes, Cuba's informal market can move daily, sometimes several times a day. If you'll use this tool often, check the rate on El Toque before any important transaction and update it here manually.", acc7_title: "Is using the informal rate legal in Cuba?", acc7_body: "Cuba decriminalized holding and using foreign currency in 2021, so personal use of dollars or euros isn't a crime. Rules around exchange rates for formal commerce and banking can still change, though, so this page offers general information rather than legal advice — always check current regulations from official sources.", acc8_title: "Data source and disclaimer", acc8_body: "This calculator's reference values come from the Informal Market Representative Rate (TRMI) published by El Toque and from CADECA's official rates. They are indicative figures that can vary; this tool does not carry out or broker currency exchanges — it only provides an informative estimate." },
-    it: { eyebrow_suite: "Suite privata", nav_title: "Calcolatrici finanziarie", nav_calculators_label: "Calcolatrici", card_compound_title: "Interesse composto", card_compound_sub: "Crescita con versamenti", card_loans_title: "Prestiti", card_loans_sub: "Rata e costo totale", card_mortgage_title: "Mutui", card_mortgage_sub: "Rata, assicurazione e tasse", card_invest_title: "Investimento", card_invest_sub: "Obiettivo e rendimento reale", card_savings_title: "Obiettivo di risparmio", card_savings_sub: "Versamento necessario", card_currency_title: "Valute", card_currency_sub: "Euro/dollaro a peso cubano", lang_label: "Lingua", blog_label: "Blog", theme_label_dark: "Modalità scura", theme_label_light: "Modalità chiara", page_eyebrow: "Convertitore di valuta", page_title: "Euro e dollaro USA a peso cubano (CUP)", page_subtitle: "Calcola all'istante quanti pesos cubani (CUP) ricevi per i tuoi euro o dollari, usando come riferimento il tasso informale pubblicato da El Toque (TRMI).", tab_usd: "Dollaro · USD", tab_eur: "Euro · EUR", label_you_have: "Hai", label_you_receive: "Ricevi", rate_caption: "Tasso informale di riferimento", updated_prefix: "Aggiornato", source_prefix: "Fonte", source_name: "El Toque (TRMI)", manual_badge: "aggiornato manualmente", update_toggle: "Aggiorna i tassi", update_intro: "Se conosci il tasso di oggi, inseriscilo qui. Verrà salvato in questo browser.", input_usd_label: "1 USD equivale a (CUP)", input_eur_label: "1 EUR equivale a (CUP)", save_btn: "Salva tassi", reset_btn: "Ripristina valori di riferimento", saved_note: "Tassi salvati.", gap_title: "Divario di cambio", gap_official_label: "Tasso ufficiale (CADECA)", gap_informal_label: "Tasso informale (El Toque)", gap_stat_template: "Il mercato informale paga il {percent}% in più rispetto al tasso ufficiale", faq_section_title: "Domande frequenti e guida", footer_disclaimer: "Valori puramente di riferimento; i tassi cambiano spesso e questo strumento non esegue né intermedia operazioni di cambio.", footer_link_text: "Vedi i tassi attuali su El Toque", acc1_title: "Cos'è il tasso informale di El Toque (TRMI)?", acc1_body: "Il Tasso Rappresentativo del Mercato Informale (TRMI) è calcolato dal media indipendente El Toque a partire dalla mediana dei prezzi di acquisto e vendita di valuta pubblicati in gruppi Telegram, WhatsApp e siti di annunci a Cuba. È il riferimento più usato dai cubani, dentro e fuori dall'isola, per conoscere il vero valore di cambio di dollaro ed euro, dato che il mercato ufficiale non lo riflette.", acc2_title: "Tasso ufficiale e tasso informale: qual è la differenza?", acc2_body: "Il tasso ufficiale è fissato dalla Banca Centrale di Cuba e dagli uffici di cambio statali (CADECA) per operazioni bancarie e commerciali. Il tasso informale è il prezzo a cui le persone si scambiano realmente valuta. A causa della scarsità di valuta estera nel sistema bancario cubano, il tasso informale è di solito molte volte superiore a quello ufficiale, come mostra l'indicatore del divario di cambio in questa pagina.", acc3_title: "Come converto euro o dollari in pesos cubani qui?", acc3_body: "Scegli la valuta (dollaro o euro), scrivi l'importo nel campo 'Hai' e l'equivalente in pesos cubani appare subito in 'Ricevi'. Puoi anche scrivere un importo in CUP per sapere a quanti euro o dollari corrisponde. Se conosci il tasso di oggi, apri 'Aggiorna i tassi' e il calcolo si adatterà.", acc4_title: "Quanto vale oggi 1 dollaro in pesos cubani?", acc4_body: "Il valore può cambiare più volte al giorno in base a domanda e offerta nel mercato informale. Questa pagina mostra l'ultimo tasso di riferimento disponibile con la sua data di aggiornamento; per il dato esatto del momento, usa il pulsante 'Aggiorna i tassi' con il valore che vedi su El Toque o l'ultimo che conosci.", acc5_title: "Quanto vale oggi 1 euro in pesos cubani?", acc5_body: "L'euro è solitamente quotato più del dollaro nel mercato informale cubano per la minore disponibilità. Come per il dollaro, il valore qui mostrato è di riferimento: conferma il tasso del giorno su El Toque se ti serve precisione per un'operazione specifica.", acc6_title: "Il tasso cambia ogni giorno? Ogni quanto devo aggiornarlo?", acc6_body: "Sì, il mercato informale cubano può muoversi quotidianamente, anche più volte al giorno. Se userai spesso questo strumento, controlla il tasso su El Toque prima di ogni operazione importante e aggiornalo qui manualmente.", acc7_title: "È legale usare il tasso informale a Cuba?", acc7_body: "Cuba ha depenalizzato il possesso e l'uso di valuta estera nel 2021, quindi l'uso personale di dollari o euro non è reato. Le norme sui tassi di cambio per il commercio formale e le operazioni bancarie possono comunque cambiare: questa pagina offre informazioni generali, non una consulenza legale — verifica sempre la normativa vigente presso fonti ufficiali.", acc8_title: "Fonte dei dati e avviso legale", acc8_body: "I valori di riferimento di questo convertitore provengono dal Tasso Rappresentativo del Mercato Informale (TRMI) pubblicato da El Toque e dai tassi ufficiali di CADECA. Sono cifre indicative che possono variare; questo strumento non esegue né intermedia operazioni di cambio valuta, fornisce solo una stima informativa." },
-    fr: { eyebrow_suite: "Suite privée", nav_title: "Calculatrices financières", nav_calculators_label: "Calculatrices", card_compound_title: "Intérêts composés", card_compound_sub: "Croissance par versements", card_loans_title: "Prêts", card_loans_sub: "Mensualité et coût total", card_mortgage_title: "Crédits immobiliers", card_mortgage_sub: "Mensualité, assurance et taxes", card_invest_title: "Investissement", card_invest_sub: "Objectif et rendement réel", card_savings_title: "Objectif d'épargne", card_savings_sub: "Versement nécessaire", card_currency_title: "Devises", card_currency_sub: "Euro/dollar vers peso cubain", lang_label: "Langue", blog_label: "Blog", theme_label_dark: "Mode sombre", theme_label_light: "Mode clair", page_eyebrow: "Convertisseur de devises", page_title: "Euro et dollar américain vers peso cubain (CUP)", page_subtitle: "Calculez instantanément combien de pesos cubains (CUP) vous obtenez pour vos euros ou dollars, en utilisant comme référence le taux informel publié par El Toque (TRMI).", tab_usd: "Dollar · USD", tab_eur: "Euro · EUR", label_you_have: "Vous avez", label_you_receive: "Vous recevez", rate_caption: "Taux informel de référence", updated_prefix: "Mis à jour", source_prefix: "Source", source_name: "El Toque (TRMI)", manual_badge: "mis à jour manuellement", update_toggle: "Mettre à jour les taux", update_intro: "Si vous connaissez le taux du jour, indiquez-le ici. Il sera enregistré dans ce navigateur.", input_usd_label: "1 USD équivaut à (CUP)", input_eur_label: "1 EUR équivaut à (CUP)", save_btn: "Enregistrer les taux", reset_btn: "Réinitialiser les valeurs de référence", saved_note: "Taux enregistrés.", gap_title: "Écart de change", gap_official_label: "Taux officiel (CADECA)", gap_informal_label: "Taux informel (El Toque)", gap_stat_template: "Le marché informel paie {percent}% de plus que le taux officiel", faq_section_title: "Questions fréquentes et guide", footer_disclaimer: "Valeurs purement indicatives ; les taux changent fréquemment et cet outil n'exécute ni n'intermédie d'opérations de change.", footer_link_text: "Voir les taux actuels sur El Toque", acc1_title: "Qu'est-ce que le taux informel d'El Toque (TRMI) ?", acc1_body: "Le Taux Représentatif du Marché Informel (TRMI) est calculé par le média indépendant El Toque à partir de la médiane des prix d'achat et de vente de devises publiés dans des groupes Telegram, WhatsApp et sites de petites annonces à Cuba. C'est la référence la plus utilisée par les Cubains, sur l'île comme à l'étranger, pour connaître la vraie valeur d'échange du dollar et de l'euro, puisque le marché officiel ne la reflète pas.", acc2_title: "Taux officiel et taux informel : quelle différence ?", acc2_body: "Le taux officiel est fixé par la Banque centrale de Cuba et les bureaux de change publics (CADECA) pour les opérations bancaires et commerciales. Le taux informel est le prix auquel les particuliers échangent réellement des devises. En raison de la rareté des devises dans le système bancaire cubain, le taux informel est généralement plusieurs fois plus élevé que le taux officiel, comme le montre l'indicateur d'écart de change de cette page.", acc3_title: "Comment convertir des euros ou des dollars en pesos cubains ici ?", acc3_body: "Choisissez la devise (dollar ou euro), saisissez le montant dans le champ « Vous avez » et l'équivalent en pesos cubains apparaît aussitôt dans « Vous recevez ». Vous pouvez aussi saisir un montant en CUP pour savoir combien d'euros ou de dollars il représente. Si vous connaissez le taux du jour, ouvrez « Mettre à jour les taux » et le calcul s'ajustera.", acc4_title: "Combien vaut 1 dollar en pesos cubains aujourd'hui ?", acc4_body: "La valeur peut changer plusieurs fois par jour selon l'offre et la demande du marché informel. Cette page affiche le dernier taux de référence disponible ainsi que sa date de mise à jour ; pour la valeur exacte du moment, utilisez le bouton « Mettre à jour les taux » avec la valeur vue sur El Toque ou la plus récente que vous connaissez.", acc5_title: "Combien vaut 1 euro en pesos cubains aujourd'hui ?", acc5_body: "L'euro se négocie généralement au-dessus du dollar sur le marché informel cubain, car son offre y est plus faible. Comme pour le dollar, la valeur affichée ici est une référence : confirmez le taux du jour sur El Toque si vous avez besoin de précision pour une opération précise.", acc6_title: "Le taux change-t-il tous les jours ? À quelle fréquence dois-je le mettre à jour ?", acc6_body: "Oui, le marché informel cubain peut évoluer chaque jour, parfois plusieurs fois par jour. Si vous utilisez souvent cet outil, vérifiez le taux sur El Toque avant toute opération importante et mettez-le à jour ici manuellement.", acc7_title: "Est-il légal d'utiliser le taux informel à Cuba ?", acc7_body: "Cuba a dépénalisé la détention et l'usage de devises étrangères en 2021 ; l'usage personnel du dollar ou de l'euro n'est donc pas un délit. Les règles sur les taux de change pour le commerce formel et les opérations bancaires peuvent néanmoins évoluer : cette page fournit une information générale et non un conseil juridique — vérifiez toujours la réglementation en vigueur auprès de sources officielles.", acc8_title: "Source des données et avis légal", acc8_body: "Les valeurs de référence de ce convertisseur proviennent du Taux Représentatif du Marché Informel (TRMI) publié par El Toque et des taux officiels de CADECA. Ce sont des chiffres indicatifs qui peuvent varier ; cet outil n'exécute ni n'intermédie d'opérations de change, il fournit uniquement une estimation informative." },
-    pt: { eyebrow_suite: "Suíte privada", nav_title: "Calculadoras financeiras", nav_calculators_label: "Calculadoras", card_compound_title: "Juros compostos", card_compound_sub: "Crescimento por aportes", card_loans_title: "Empréstimos", card_loans_sub: "Parcela e custo total", card_mortgage_title: "Hipotecas", card_mortgage_sub: "Parcela, seguro e impostos", card_invest_title: "Investimento", card_invest_sub: "Meta e retorno real", card_savings_title: "Meta de poupança", card_savings_sub: "Aporte necessário", card_currency_title: "Moedas", card_currency_sub: "Euro/dólar para peso cubano", lang_label: "Idioma", blog_label: "Blog", theme_label_dark: "Modo escuro", theme_label_light: "Modo claro", page_eyebrow: "Conversor de moedas", page_title: "Euro e dólar americano para peso cubano (CUP)", page_subtitle: "Calcule na hora quantos pesos cubanos (CUP) você recebe pelos seus euros ou dólares, usando como referência a taxa informal publicada pelo El Toque (TRMI).", tab_usd: "Dólar · USD", tab_eur: "Euro · EUR", label_you_have: "Você tem", label_you_receive: "Você recebe", rate_caption: "Taxa informal de referência", updated_prefix: "Atualizado", source_prefix: "Fonte", source_name: "El Toque (TRMI)", manual_badge: "atualizado manualmente", update_toggle: "Atualizar taxas", update_intro: "Se você souber a taxa de hoje, digite aqui. Ela será salva neste navegador.", input_usd_label: "1 USD equivale a (CUP)", input_eur_label: "1 EUR equivale a (CUP)", save_btn: "Salvar taxas", reset_btn: "Restaurar valores de referência", saved_note: "Taxas salvas.", gap_title: "Diferença cambial", gap_official_label: "Taxa oficial (CADECA)", gap_informal_label: "Taxa informal (El Toque)", gap_stat_template: "O mercado informal paga {percent}% a mais que a taxa oficial", faq_section_title: "Perguntas frequentes e guia", footer_disclaimer: "Valores apenas de referência; as taxas mudam com frequência e esta ferramenta não realiza nem intermedeia operações de câmbio.", footer_link_text: "Ver taxas atuais no El Toque", acc1_title: "O que é a taxa informal do El Toque (TRMI)?", acc1_body: "A Taxa Representativa do Mercado Informal (TRMI) é calculada pelo veículo independente El Toque a partir da mediana dos preços de compra e venda de moeda estrangeira publicados em grupos de Telegram, WhatsApp e sites de classificados em Cuba. É a referência mais usada por cubanos dentro e fora da ilha para saber o valor real de câmbio do dólar e do euro, já que o mercado oficial não reflete isso.", acc2_title: "Taxa oficial x taxa informal: qual a diferença?", acc2_body: "A taxa oficial é definida pelo Banco Central de Cuba e pelas casas de câmbio estatais (CADECA) para operações bancárias e comerciais. A taxa informal é o preço pelo qual as pessoas realmente trocam moeda entre si. Devido à escassez de moeda estrangeira no sistema bancário cubano, a taxa informal costuma ser várias vezes maior que a oficial, como mostra o indicador de diferença cambial desta página.", acc3_title: "Como converto euros ou dólares para pesos cubanos aqui?", acc3_body: "Escolha a moeda (dólar ou euro), digite o valor no campo 'Você tem' e o equivalente em pesos cubanos aparece na hora em 'Você recebe'. Você também pode digitar um valor em CUP para saber quantos euros ou dólares ele representa. Se souber a taxa de hoje, abra 'Atualizar taxas' e o cálculo se ajustará.", acc4_title: "Quanto vale 1 dólar em pesos cubanos hoje?", acc4_body: "O valor pode mudar várias vezes ao dia conforme a oferta e a demanda do mercado informal. Esta página mostra a última taxa de referência disponível com sua data de atualização; para o valor exato do momento, use o botão 'Atualizar taxas' com o valor que você vir no El Toque ou o mais recente que conhecer.", acc5_title: "Quanto vale 1 euro em pesos cubanos hoje?", acc5_body: "O euro costuma valer mais que o dólar no mercado informal cubano por haver menos oferta dele. Assim como o dólar, o valor mostrado aqui é uma referência: confirme a taxa do dia no El Toque se precisar de precisão para uma operação específica.", acc6_title: "A taxa muda todos os dias? Com que frequência devo atualizá-la?", acc6_body: "Sim, o mercado informal cubano pode variar diariamente, às vezes várias vezes no mesmo dia. Se for usar esta ferramenta com frequência, confira a taxa no El Toque antes de qualquer operação importante e atualize-a aqui manualmente.", acc7_title: "É legal usar a taxa informal em Cuba?", acc7_body: "Cuba descriminalizou a posse e o uso de moeda estrangeira em 2021, portanto o uso pessoal de dólares ou euros não é crime. Ainda assim, as regras sobre taxas de câmbio para o comércio formal e operações bancárias podem mudar; esta página oferece informação geral, não assessoria jurídica — sempre verifique a regulamentação vigente em fontes oficiais.", acc8_title: "Fonte dos dados e aviso legal", acc8_body: "Os valores de referência deste conversor vêm da Taxa Representativa do Mercado Informal (TRMI) publicada pelo El Toque e das taxas oficiais da CADECA. São números indicativos que podem variar; esta ferramenta não realiza nem intermedeia operações de câmbio, apenas oferece uma estimativa informativa." },
-    de: { eyebrow_suite: "Private Suite", nav_title: "Finanzrechner", nav_calculators_label: "Rechner", card_compound_title: "Zinseszins", card_compound_sub: "Wachstum durch Einzahlungen", card_loans_title: "Kredite", card_loans_sub: "Rate und Gesamtkosten", card_mortgage_title: "Hypotheken", card_mortgage_sub: "Rate, Versicherung und Steuern", card_invest_title: "Investition", card_invest_sub: "Ziel und reale Rendite", card_savings_title: "Sparziel", card_savings_sub: "Nötige Einzahlung", card_currency_title: "Währungen", card_currency_sub: "Euro/Dollar in kubanischen Peso", lang_label: "Sprache", blog_label: "Blog", theme_label_dark: "Dunkelmodus", theme_label_light: "Hellmodus", page_eyebrow: "Währungsrechner", page_title: "Euro und US-Dollar in kubanischen Peso (CUP)", page_subtitle: "Berechnen Sie sofort, wie viele kubanische Pesos (CUP) Sie für Ihre Euro oder Dollar erhalten – auf Basis des inoffiziellen Kurses von El Toque (TRMI).", tab_usd: "Dollar · USD", tab_eur: "Euro · EUR", label_you_have: "Sie haben", label_you_receive: "Sie erhalten", rate_caption: "Inoffizieller Referenzkurs", updated_prefix: "Aktualisiert", source_prefix: "Quelle", source_name: "El Toque (TRMI)", manual_badge: "manuell aktualisiert", update_toggle: "Kurse aktualisieren", update_intro: "Wenn Sie den heutigen Kurs kennen, geben Sie ihn hier ein. Er wird in diesem Browser gespeichert.", input_usd_label: "1 USD entspricht (CUP)", input_eur_label: "1 EUR entspricht (CUP)", save_btn: "Kurse speichern", reset_btn: "Referenzwerte zurücksetzen", saved_note: "Kurse gespeichert.", gap_title: "Wechselkurslücke", gap_official_label: "Offizieller Kurs (CADECA)", gap_informal_label: "Inoffizieller Kurs (El Toque)", gap_stat_template: "Der informelle Markt zahlt {percent}% mehr als der offizielle Kurs", faq_section_title: "Häufige Fragen und Leitfaden", footer_disclaimer: "Nur Richtwerte; die Kurse ändern sich häufig, und dieses Tool führt keine Devisengeschäfte aus und vermittelt keine.", footer_link_text: "Aktuelle Kurse bei El Toque ansehen", acc1_title: "Was ist der inoffizielle Kurs von El Toque (TRMI)?", acc1_body: "Der Repräsentative Kurs des informellen Marktes (TRMI) wird vom unabhängigen Medium El Toque aus dem Median der Kauf- und Verkaufspreise berechnet, die in Telegram- und WhatsApp-Gruppen sowie auf Kleinanzeigenseiten in Kuba veröffentlicht werden. Er ist die meistgenutzte Referenz für Kubaner im In- und Ausland, um den tatsächlichen Wechselwert von Dollar und Euro zu kennen, da der offizielle Markt ihn nicht widerspiegelt.", acc2_title: "Offizieller Kurs vs. inoffizieller Kurs: Was ist der Unterschied?", acc2_body: "Der offizielle Kurs wird von der kubanischen Zentralbank und den staatlichen Wechselstuben (CADECA) für Bank- und Handelsgeschäfte festgelegt. Der inoffizielle Kurs ist der Preis, zu dem Privatpersonen tatsächlich Devisen tauschen. Wegen der Devisenknappheit im kubanischen Bankensystem liegt der inoffizielle Kurs meist um ein Vielfaches über dem offiziellen, wie die Wechselkurslücke auf dieser Seite zeigt.", acc3_title: "Wie rechne ich hier Euro oder Dollar in kubanische Pesos um?", acc3_body: "Wählen Sie die Währung (Dollar oder Euro), geben Sie den Betrag im Feld 'Sie haben' ein, und der Gegenwert in kubanischen Pesos erscheint sofort bei 'Sie erhalten'. Sie können auch einen Betrag in CUP eingeben, um zu sehen, wie viel Euro oder Dollar das entspricht. Wenn Sie den heutigen Kurs kennen, öffnen Sie 'Kurse aktualisieren', und die Berechnung passt sich an.", acc4_title: "Wie viel ist 1 US-Dollar heute in kubanischen Pesos?", acc4_body: "Der Wert kann sich je nach Angebot und Nachfrage im informellen Markt mehrmals täglich ändern. Diese Seite zeigt den zuletzt verfügbaren Referenzkurs samt Aktualisierungsdatum; für den genauen aktuellen Wert nutzen Sie 'Kurse aktualisieren' mit dem Wert von El Toque oder dem zuletzt bekannten.", acc5_title: "Wie viel ist 1 Euro heute in kubanischen Pesos?", acc5_body: "Der Euro notiert auf dem kubanischen informellen Markt meist höher als der Dollar, da das Angebot geringer ist. Wie beim Dollar ist der hier gezeigte Wert nur eine Referenz – bestätigen Sie den Tageskurs bei El Toque, wenn Sie für ein konkretes Geschäft Genauigkeit benötigen.", acc6_title: "Ändert sich der Kurs jeden Tag? Wie oft sollte ich ihn aktualisieren?", acc6_body: "Ja, der kubanische informelle Markt kann sich täglich, manchmal sogar mehrmals am Tag, bewegen. Wenn Sie dieses Tool häufig nutzen, prüfen Sie den Kurs vor jeder wichtigen Transaktion bei El Toque und aktualisieren Sie ihn hier manuell.", acc7_title: "Ist die Nutzung des inoffiziellen Kurses in Kuba legal?", acc7_body: "Kuba hat 2021 den Besitz und die Nutzung von Fremdwährungen entkriminalisiert, daher ist die private Nutzung von Dollar oder Euro keine Straftat. Regeln zu Wechselkursen für den formellen Handel und Bankgeschäfte können sich dennoch ändern; diese Seite bietet allgemeine Informationen, keine Rechtsberatung – prüfen Sie stets die geltenden Vorschriften bei offiziellen Quellen.", acc8_title: "Datenquelle und rechtlicher Hinweis", acc8_body: "Die Referenzwerte dieses Rechners stammen aus dem von El Toque veröffentlichten Repräsentativen Kurs des informellen Marktes (TRMI) und den offiziellen CADECA-Kursen. Es handelt sich um Richtwerte, die variieren können; dieses Tool führt keine Devisengeschäfte aus oder vermittelt sie, sondern bietet nur eine informative Schätzung." }
+    es: { source_prefix: "Fuente", source_name: "El Toque (TRMI)", updated_prefix: "Actualizado", gap_stat_template: "El mercado informal paga un {percent}% más que la tasa oficial", theme_label_dark: "Modo oscuro", theme_label_light: "Modo claro" },
+    en: { source_prefix: "Source", source_name: "El Toque (TRMI)", updated_prefix: "Updated", gap_stat_template: "The informal market pays {percent}% more than the official rate", theme_label_dark: "Dark mode", theme_label_light: "Light mode" },
+    it: { source_prefix: "Fonte", source_name: "El Toque (TRMI)", updated_prefix: "Aggiornato", gap_stat_template: "Il mercato informale paga il {percent}% in più rispetto al tasso ufficiale", theme_label_dark: "Modalità scura", theme_label_light: "Modalità chiara" },
+    fr: { source_prefix: "Source", source_name: "El Toque (TRMI)", updated_prefix: "Mis à jour", gap_stat_template: "Le marché informel paie {percent}% de plus que le taux officiel", theme_label_dark: "Mode sombre", theme_label_light: "Mode clair" },
+    pt: { source_prefix: "Fonte", source_name: "El Toque (TRMI)", updated_prefix: "Atualizado", gap_stat_template: "O mercado informal paga {percent}% a mais que a taxa oficial", theme_label_dark: "Modo escuro", theme_label_light: "Modo claro" },
+    de: { source_prefix: "Quelle", source_name: "El Toque (TRMI)", updated_prefix: "Aktualisiert", gap_stat_template: "Der informelle Markt zahlt {percent}% mehr als der offizielle Kurs", theme_label_dark: "Dunkelmodus", theme_label_light: "Hellmodus" }
   };
 
-  var SPANISH_CACHE = {}; // textos originales en español, capturados al cargar
+  var SPANISH_CACHE = {}; 
   document.querySelectorAll("[data-i18n]").forEach(function (el) {
     SPANISH_CACHE[el.getAttribute("data-i18n")] = el.tagName === "SELECT" ? null : el.innerHTML;
   });
@@ -219,11 +180,11 @@
         el.innerHTML = I18N[lang][key];
       }
     });
-    // el botón de tema usa una key dinámica (claro/oscuro) que no vive en data-i18n fijo
-    var theme = document.documentElement.getAttribute("data-theme");
-    themeLabel.textContent = lang === "es"
-      ? (theme === "dark" ? "Modo claro" : "Modo oscuro")
-      : (theme === "dark" ? I18N[lang].theme_label_light : I18N[lang].theme_label_dark);
+
+    if (themeLabel) {
+      var theme = document.documentElement.getAttribute("data-theme");
+      themeLabel.textContent = I18N[lang][theme === "dark" ? "theme_label_light" : "theme_label_dark"];
+    }
 
     updateTicker();
     updateGapWidget();
@@ -231,19 +192,14 @@
   }
 
   var langSelect = document.getElementById("langSelect");
-  langSelect.addEventListener("change", function () { applyLanguage(this.value); });
-
-  /* =========================================================
-     10) Arranque
-     ========================================================= */
-  function refreshAll() {
-    recomputeFromForeign();
-    updateTicker();
-    updateGapWidget();
+  if (langSelect) {
+    langSelect.addEventListener("change", function () { applyLanguage(this.value); });
   }
 
+  /* =========================================================
+     8) Arranque e Inicialización
+     ========================================================= */
   (function init() {
-    // tema: preferencia guardada > prefers-color-scheme > oscuro por defecto
     var savedTheme = null;
     try { savedTheme = localStorage.getItem(THEME_KEY); } catch (e) { }
     if (!savedTheme) {
@@ -251,11 +207,10 @@
     }
     applyTheme(savedTheme);
 
-    // idioma: preferencia guardada > español por defecto
     var savedLang = null;
     try { savedLang = localStorage.getItem(LANG_KEY); } catch (e) { }
     if (savedLang && I18N[savedLang]) {
-      langSelect.value = savedLang;
+      if (langSelect) langSelect.value = savedLang;
       applyLanguage(savedLang);
     } else {
       updateTicker();
@@ -263,7 +218,6 @@
     }
 
     recomputeFromForeign();
-    fetchLiveRateFromElToque();
   })();
 
 })();
